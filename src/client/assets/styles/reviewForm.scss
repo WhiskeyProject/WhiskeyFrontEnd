@@ -1,0 +1,35 @@
+.reviewFormFlex {
+	width: 600px;
+	border: 3px solid #e7e7e7;
+	margin: 25px 0 15px 0;
+	padding: 15px 0 15px 15px;
+}
+.reviewForm {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	height: 200px;
+	// border: 1px solid red;
+}
+.reviewForm input[type=text] {
+	width: 350px;
+	height: 40px;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.reviewForm input[type=number] {
+	width: 40px;
+	height: 35px;
+	margin-bottom: 10px;
+}
+.reviewForm textarea {
+	width: 500px;
+	height: 120px;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.reviewForm button {
+	width: 80px;
+	height: 30px;
+	font-size: 12px;
+}

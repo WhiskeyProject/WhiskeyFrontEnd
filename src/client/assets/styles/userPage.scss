@@ -1,0 +1,292 @@
+ .bgImage {
+	
+	background: url("../images/whiskeyMap.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	width: 100%;
+	height: 100px;
+	// position: absolute;
+	// top: 0;
+	// left: 0;
+
+}
+header {
+	width: 100%;
+	height: 100px;
+	background-color: rgba(65,51,51,.8);
+	display: flex;
+	justify-content: space-between;;
+	align-items: flex-end;
+	// border-bottom: 2px solid rgb(203,151,85);
+	// border: 3px solid yellow;
+}
+header a {
+	text-decoration: none;
+	color: white;
+	margin: 0 13px 0 13px;
+	font-family: "Special Elite";
+	font-size: 14px;
+
+}
+.searchBar {
+	position: absolute;
+	top: 80px;
+	left: 0;
+	background-color: rgba(203,151,85, .7);
+	width: 180px;
+	height: 100%;
+	
+}
+.likeBox, .suggestBox {
+	display: flex;
+	flex-direction: column;
+	margin: 15px 0 0 220px;
+	position: relative;
+}
+.products, .suggestBox, .searchResultsBox {
+	// background: url("../images/productBg.jpg") no-repeat center center fixed;
+	// -webkit-background-size: cover;
+	// -moz-background-size: cover;
+	// -o-background-size: cover;
+	// background-size: cover;
+	width: 850px;
+	height: 360px;
+	// border: 2px solid rgb(203,151,85);
+	// margin-left: 2px;
+	// background-color: #5D524F;
+	-webkit-box-shadow: 31px 13px 70px -23px rgba(0,0,0,0.61);
+	-moz-box-shadow: 31px 13px 70px -23px rgba(0,0,0,0.61);
+	box-shadow: 31px 13px 70px -23px rgba(0,0,0,0.61);
+	padding: 40px 10px 10px 10px;
+	display: flex;
+	flex-direction: row;
+	border: 2px solid rgba(203,151,85,.7);
+	overflow: auto;
+}
+.searches, .newSearchButton {
+	width: 140px;
+	height: 35px;
+	line-height: 35px;
+	background-color: rgb(94,76,74);
+	margin: 10px 0 0 0;
+	color: white;
+	font-family: "Swistblnk Monthoers";
+}
+.newSearchButton {
+	position: relative;
+	top: 420px;
+	left: 20px;
+	padding-left: 10px;
+	font-family: Arial;
+	font-size: 12px;
+}
+.newSearchButton .fa {
+	margin-left: 7px;
+}
+.eachItem, .itemsLayout {
+	display: flex;
+	flex-direction: column;
+	margin: 0 0 10px 10px;
+	width: 200px;
+	height: auto;
+	position: relative;
+	z-index: 1006;
+	box-sizing: border-box;
+}
+
+.likesImage, .suggestImage, .itemImage {
+	width: 200px;
+	height: 150px;
+}
+.imageContainer {
+	width: 200px;
+	height: 150px;
+	box-sizing: border-box;
+}
+.innerText, .suggestText, .itemDescription {
+	height: 100px;
+	overflow: auto;
+	font-size: 12px;
+	background-color: #6E605C;
+	padding: 3px;
+
+}
+// .shade {
+// 	background-color: rgba(65,51,51,.5);
+// 	width: 100%;
+// 	height: 440px;
+// 	position: absolute;
+// 	top: 80px;
+// 	left: 180px;
+// 	z-index: 1005;
+// }
+// .heading {
+// 	width: 100%;
+// 	height: 60px;
+// 	background-color: rgba(203,151,85,.7);
+// }
+.searchBar p {
+	text-align: center;
+	font-family: "Swistblnk Monthoers";
+	margin-top: 80px;
+}
+.suggestBox {
+	margin-top: 5px;
+	background: none;
+}
+.like {
+	background-color: #5C504D;
+	width: 850px;
+	height: 60px;
+	align-items: center;
+	color: white;
+	font-family: "Swistblnk Monthoers";
+	font-size: 22px;
+	padding-left: 15px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	flex-direction: row;
+	padding-right: 15px;
+}
+.searchField input[type=search] {
+	width: 185px;
+	height: 30px;
+	line-height: 35px;
+	border-radius: 25px;
+	outline: none;
+	padding-left: 10px;
+	color: #5C504D;
+}
+.closeButton {
+	border: 2px solid rgba(203,151,85,.7);
+	width: 850px;
+
+}
+.closeButton .fa {
+	color: white;
+	position: relative;
+	top: -2px;
+	right: -810px;
+}
+.moreButton {
+	height: 40px;
+	line-height: 40px;
+	background: #D2AA76;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.choices {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	height: 40px;
+	align-items: center;
+	background-color: #5C504D;
+	color: white;
+	font-size: 12px; 
+	
+}
+
+.choiceA {
+	width: 90px;
+	padding: 0 0 0 5px;
+	color: white;
+}
+.choiceB {
+	width: 70px;
+	
+	color: #e7e7e7;
+}
+
+.prodDetails {
+	align-self: flex-end;
+}
+
+.fa-heart {
+	position: relative;
+	color: red;
+	top: -25px;
+	left: 4px;
+}
+.fa-heart:hover {
+	color: black;
+	display: block;
+}
+.fa-heart:hover .removeLike {
+	display: block;
+	
+}
+.dislike {
+	color: black;
+}
+.removeLike {
+	position: absolute;
+		// width: 180px;
+		// height: 35px;
+	background-color: #e7e7e7;
+	padding: 4px;
+	color: black;
+	top: -30px;
+	left: -70px;
+	display: none;
+}
+.noHeart {
+	color: black;
+}
+.noHeart:hover {
+	color: red;
+}
+// .moveHeart {
+// 	position: relative;
+// 	top: -35px;
+// 	left: -120px;
+// }
+
+.saveSearchOption2 {
+	width: 400px;
+	height: 75px;
+	// border: 1px solid red;
+	background: #6E6460;
+	
+	border-radius: 8px;
+	margin: 0 auto;
+	padding: 8px;
+	padding-left: 110px;
+	
+}
+
+.saveSearchOption2 input[type=text] {
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+}
+
+.saveSearchText {
+	width: 200px;
+	background: #3B322F;
+	height: 30px;
+	line-height: 30px;
+	font-size: 16px;
+	color: white;
+	font-family: 'Swistblnk Monthoers';
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	// margin-left: 142px;	
+}
+
+.mainImage img {
+	opacity: .2;
+	margin-left: 100px;
+}
+
+.productDetailBg {
+	margin: 60px 0 0 120px;
+}
+

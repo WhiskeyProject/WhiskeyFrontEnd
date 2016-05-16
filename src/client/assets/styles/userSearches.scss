@@ -1,0 +1,18 @@
+.searchBoxes {
+	width: 140px;
+	min-height: 50px;
+	background-color: rgb(94,76,74);
+	margin: 10px auto;
+	color: white;
+	font-family: Arial;
+	box-sizing: border-box;
+	padding: 7px;
+	display: flex;
+	align-items: center;
+	// border: 1px solid red;
+	overflow-x: scroll;
+	overflow-y: hidden;	
+	font-size: 14px;
+	border-radius: 4px;
+
+}

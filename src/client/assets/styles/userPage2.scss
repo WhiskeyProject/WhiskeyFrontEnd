@@ -1,0 +1,39 @@
+.userPageContainer {
+	width: 1200px;
+	height: 900px;
+	margin: 50px auto; 
+	// border: 1px solid red;
+	display: flex;
+	flex-wrap: nowrap;
+	// justify-content: space-between;
+}
+// .likeFlex {
+// 	width: 1000px;
+// 	height: 600px;
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	justify-content: space-between;
+	// border: 1px solid yellow;
+// }
+.userSearchSave {
+	// border: 1px solid green;
+	width: 180px;
+}
+.likeBoxItemBox {
+	// border: 2px solid pink;
+	overflow: auto;
+}
+.carryLogo img {
+	width: 80px;
+	height: auto;
+}
+.logoDiv {
+	// border: 2px solid red;
+	align-self: center;
+	margin-left: 20px;
+}
+.headerLinks {
+	width: 200px;
+	height: auto;
+	// border: 2px solid blue;
+}
