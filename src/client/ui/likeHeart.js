@@ -23,7 +23,7 @@ export default React.createClass({
 	},
 	render: function(){
 		return (
-			<i className="fa fa-heart" onClick={this.deleteLike.bind(this, this.props.item)}><span className="removeLike">Remove From Likes</span></i>
+			<i className="fa fa-heart" id={this.props.heartAttack} onClick={this.deleteLike.bind(this, this.props.item)}><span className="removeLike">Remove From Likes</span></i>
 		)
 	}
 })

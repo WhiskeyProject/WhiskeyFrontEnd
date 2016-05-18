@@ -4,6 +4,7 @@ import { login } from 'api/data';
 import { browserHistory } from 'react-router';
 
 require('assets/styles/login.scss');
+require('font-awesome-webpack');
 
 export default React.createClass({
 	// componentWillMount: function () {
@@ -19,6 +20,9 @@ export default React.createClass({
 			password: "",
 			error: false
 		}
+	},
+	closeBox: function(){
+		this.props.close();
 	},
 	handleChange: function(e){
 		var val = e.target.value;
@@ -39,7 +43,7 @@ export default React.createClass({
 		login(this.state.username, this.state.password).then(function(resp){
 			console.log('handle then');
 			
-			browserHistory.push('/userPage');
+			browserHistory.push('/userPage2');
 		}.bind(this)).catch(function(err){
 			console.log('handle catch');
 			this.setState({
@@ -57,6 +61,7 @@ export default React.createClass({
 		      		<input type="text" onChange={this.handleChange} value={this.state.username} name="username" placeholder="Username"/><br />
 		      		<input type="password" onChange={this.handleChange} value={this.state.password} name="password" placeholder="Password"/> 
 		      		<button className="loginButton">Login</button>
+		      		<i className="fa fa-times-circle posCircle" onClick={this.closeBox}></i>
 		      		{this.state.error ? <div className='error'>Password and Username do not match</div> : ''}
 	  			</form>
   			</div>

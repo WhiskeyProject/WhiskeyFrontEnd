@@ -38,7 +38,8 @@ export default React.createClass({
 				reviews: currentStore.whiskeyReducer.reviews,
 				likedwhiskey: currentStore.userReducer.likedwhiskey,
 				moveHeart: "moveHeart",
-				moveOption: "moveOption"
+				moveOption: "moveOption",
+				heartAttack: "heartAttack"
 
 			});
 			
@@ -62,6 +63,7 @@ export default React.createClass({
 			return true;
 		}
 	},
+
 	componentWillUnmount: function () {
 		this.unsubscribe();
 	},
@@ -69,12 +71,15 @@ export default React.createClass({
 		return (
 			<div className="bgImage">
 				<header className="carryLogo">
+					<div className="headerFlex">
 					<div className="logoDiv">
 						<Link to="/landingPage3"><img src={image} /></Link>
 					</div>
 					<div className="headerLinks">
+						<Link to="/likesPage2">New Search</Link>
 						<Link to="/userPage2">Profile</Link>
 						<Link to="/landingPage3">Logout</Link>
+					</div>
 					</div>
 				</header>
 				<div className="container">
@@ -82,7 +87,7 @@ export default React.createClass({
 					<div className="productFlex  prodDetailContainer">
 						<div className="imageDetailBox">
 							<div className="detailImage"><img src={this.state.whiskeyItem.img_url} /></div>
-							{this.getStatus(this.state.whiskeyItem.id) ? <LikeHeart item={this.state.whiskeyItem} moveHeart={this.state.moveheart} moveOption={this.state.moveOption} /> : <NoHeart item={this.state.whiskeyItem} moveHeart={this.state.moveheart} moveOption={this.state.moveOption} />}
+							{this.getStatus(this.state.whiskeyItem.id) ? <LikeHeart item={this.state.whiskeyItem} moveHeart={this.state.moveheart} moveOption={this.state.moveOption} heartAttack={this.state.heartAttack} /> : <NoHeart item={this.state.whiskeyItem} moveHeart={this.state.moveheart} moveOption={this.state.moveOption}  heartAttack={this.state.heartAttack} />}
 							<div className="avgPrice">Average Price: <span className="priceColor">${this.state.whiskeyItem.price}</span></div>
 							<StarRating rating={this.state.whiskeyItem.rating} />
 							

@@ -17,12 +17,13 @@ export default React.createClass({
 			getMore(i, this.props.likes);
 		} 
 		console.log(pageNum);
+		console.log(this.props.likes);
 
 	},
 	render: function(){
 		return (
 			<div>
-			<div className="moreButton positionMoreButton" onClick={this.handleClick}>More</div>
+			<div className="moreButton positionMoreButton" onClick={this.handleClick}>more</div>
 			{this.props.showSearch ? <SaveSearch likes={this.props.likes} /> : ""} 
 			</div>
 		)

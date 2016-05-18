@@ -23,7 +23,7 @@
 	top: 120px;
 	right: 0;
 	z-index: 1001;
-	animation: login 2s ease-out; 
+	animation: login 1	s ease-out; 
 
 }
 .signupBox {
@@ -61,7 +61,7 @@
   	height: 26px;
 	color: white;
 	font-family: 'Special Elite';
-	font-size: 16px;
+	font-size: 14px;
 }
 .signupButton {
 	background-color: rgba(178,146,116,.7);
@@ -83,4 +83,14 @@
 //   margin-bottom: 5px;
 //   border-radius: 4px;
 // }
-
+.fa-times-circle {
+	color: white;
+}
+.posCircle {
+	position: relative;
+	top: 25px;
+	left: 15px;
+}
+#loginForm ::-webkit-input-placeholder, #registrationForm ::-webkit-input-placeholder {
+	font-size: 12px;
+}

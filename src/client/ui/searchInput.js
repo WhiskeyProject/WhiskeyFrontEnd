@@ -5,6 +5,7 @@ import SearchItem from 'ui/searchItem';
 import LikeBoxItem from 'ui/likeBoxItem';
 
 require("assets/styles/userPage.scss");
+require("assets/styles/searchInput.scss");
 
 export default React.createClass({
 	getInitialState: function(){
@@ -13,7 +14,16 @@ export default React.createClass({
 			showSearchItem: false,
 			searchTag: ""
 		})
-		
+	},
+	componentWillMount: function(){
+		this.unsubscribe = store.subscribe(function(){
+			var currentStore = store.getState();
+			this.setState({
+				tagSearch: currentStore.userReducer.tagSearch,
+				showSearchItem: currentStore.showReducer.showSearchItem,
+				searchTag: this.state.searchTag
+			})
+		}.bind(this))
 	},
 	handleChange: function(){
 		this.setState({
@@ -23,43 +33,25 @@ export default React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
 		getGeneralSearch(this.state.searchTag);
-		store.dispatch({
-			type: 'CHANGE_SHOWSEARCHITEM',
-			showSearchItem: true
-		})
-		store.dispatch({
-			type: 'CHANGE_SHOWSEARCH',
-			showSearch: false
-		})
-		store.dispatch({
-			type: 'CHANGE_SHOW',
-			show: false
-		})
-		
+		this.props.getDivTitle(this.state.searchTag, "You searched for ");
 		// store.dispatch({
-		// 	type: 'GET_LIKETAGS',
-		// 	likes: []
+		// 	type: 'CHANGE_SHOWSEARCH',
+		// 	showSearch: true
 		// })
-		this.unsubscribe = store.subscribe(function(){
-			var currentStore = store.getState();
-			this.setState({
-				tagSearch: currentStore.userReducer.tagSearch,
-				showSearchItem: currentStore.showReducer.showSearchItem,
-				searchTag: this.state.searchTag
-			})
-		}.bind(this))
-		
+		this.setState({
+			searchTag: ""
+		})
+		this.props.showLikeButton();
 		// console.log('tagSearch after submit', this.state.tagSearch);
 	},
 	render: function(){
 		return (
-			<div>
-				<form className="searchField" onSubmit={this.handleSubmit}>
+			<div className="searchInputDiv">
+				<form id="searchField" onSubmit={this.handleSubmit}>
+					<i className="fa fa-search"></i>
 					<input type="search" ref="searchTag" placeholder="Search" onChange={this.handleChange} name="searchTag" value={this.state.searchTag} />
+					<button id="searchFieldButton" type="submit">Search</button>
 				</form>
-				
-					
-			
 			</div>
 		)
 	}

@@ -4,6 +4,12 @@ html {box-sizing:border-box; height:100%;}
 html, body, #app, #app > div {
   height:100%;
 }
+body {
+	background: black;
+}
+a {
+	text-decoration: none;
+}
 
 // footer {
 // 	width: 100%;

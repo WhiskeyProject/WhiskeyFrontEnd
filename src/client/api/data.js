@@ -8,6 +8,10 @@ export function login(user, pass) {
   return api.login(user, pass);
 }
 
+export function logout() {
+ return api.logout();
+}
+
 export function getUsers() {
   return api.get('users/users/');
 }
@@ -50,12 +54,13 @@ export function postNewReview(obj){
 
 
 export function getTagSearch(str){
-  // console.log("shoot/?tags=" + str);
+  console.log("shoot/?tags=" + str);
     return api.get("shoot/?tags=" + str).then(function(resp){
       store.dispatch({
         type: 'GET_TAGSEARCH',
         tagSearch: resp.data.results,
-        itemCount: resp.data.count
+        itemCount: resp.data.count,
+        containerInfo: resp.data.results
       })
         if(resp.data.count >= 12) { 
           store.dispatch({
@@ -68,16 +73,31 @@ export function getTagSearch(str){
             })
           }
 
-      // console.log('After the call:', resp.data.results.length);
-      //        console.log("tagCount:", resp.data.count);
+      console.log('After the call:', resp.data.results.length);
+             console.log("tagCount:", resp.data.count);
 
     })
 }
+
+export function getMore(num, str){
+  // console.log("shoot/?tags=" + str);
+    return api.get("shoot/?page=" + num + "&tags=" + str).then(function(resp){
+      store.dispatch({
+        type: 'GET_MORE',
+        tagSearch: resp.data.results,
+        containerInfo: resp.data.results
+      })
+      console.log('After the more call:', resp.data.results);
+    })
+}
+
+
 export function getGeneralSearch(str){
     return api.get("searchbox/?terms=" + str).then(function(resp){
       store.dispatch({
         type: 'GET_TAGSEARCH',
-        tagSearch: resp.data
+        tagSearch: resp.data, 
+        containerInfo: resp.data
       })
       if(resp.data.length >= 12) { 
           store.dispatch({
@@ -92,16 +112,7 @@ export function getGeneralSearch(str){
       console.log("tagSearch:", resp.data);
     })
 }
-export function getMore(num, str){
-  // console.log("shoot/?tags=" + str);
-    return api.get("shoot/?page=" + num + "&tags=" + str).then(function(resp){
-      store.dispatch({
-        type: 'GET_MORE',
-        tagSearch: resp.data.results
-      })
-      console.log('After the more call:', resp.data.results);
-    })
-}
+
 
 export function changeFavorite(obj){
   return api.put('changeliked/', obj).then(function(resp){
@@ -124,7 +135,8 @@ export function getLikes() {
   return api.get('likedwhiskey/').then(function(resp){
     store.dispatch({
       type: 'GET_LIKES',
-      likedwhiskey: resp.data.results
+      likedwhiskey: resp.data.results,
+      containerInfo: resp.data.results
     })
     console.log('Likes:', resp.data.results)
   })

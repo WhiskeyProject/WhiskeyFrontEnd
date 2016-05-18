@@ -16,22 +16,24 @@ export default React.createClass({
 	},
 	handleClick: function(item, e){
 		e.stopPropagation();
-		// console.log(item.search_string);
+		console.log(item.search_string);
+		this.props.getDivTitle(item.title);
 		var searchString = item.search_string;
 		var searchTitle = item.title;
 		getTagSearch(searchString);
 		store.dispatch({
-			type: 'CHANGE_SHOWSEARCH',
-			showSearch: false
+			type: 'CHANGE_SHOWMOREBUTTON',
+			showMoreButton: true
 		})
 		store.dispatch({
-			type: 'CHANGE_SHOW',
-			show: false
+			type: 'GET_LIKETAGS',
+			likes: searchString
 		})
-		store.dispatch({
-			type: 'CHANGE_SHOWSEARCHITEM',
-			showSearchItem: true
-		})
+		console.log('after dispatch', searchString);
+		// store.dispatch({
+		// 	type: 'CHANGE_SHOWSEARCHITEM',
+		// 	showSearchItem: true
+		// })
 		this.unsubscribe = store.subscribe(function(){
 			var currentStore = store.getState();
 
@@ -39,8 +41,9 @@ export default React.createClass({
 				tagSearch: currentStore.userReducer.tagSearch,
 				showSearchItem: currentStore.showReducer.showSearch,
 				searchTitle: searchTitle
-			})
+			});
 		}.bind(this))
+		this.props.showLikeButton();
 
 	},
 	

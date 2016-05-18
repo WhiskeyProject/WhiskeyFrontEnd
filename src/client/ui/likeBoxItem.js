@@ -12,6 +12,7 @@ import NoHeart from 'ui/noHeart';
 import SaveSearch from 'ui/saveSearch';
 
 require("assets/styles/userPage.scss");
+require("assets/styles/likeBoxItem.scss")
 require('font-awesome-webpack');
 var image = require("assets/images/darkerLogo.png");
 var x = [];
@@ -21,7 +22,8 @@ export default React.createClass({
 		return ({
 			showHeart: this.props.showHeart || false,
 			likedwhiskey: [],
-			showSearch: false
+			showSearch: false,
+			showMoreButton: false
 		})
 	},
 	
@@ -30,7 +32,8 @@ export default React.createClass({
 			var currentStore = store.getState();
 			this.setState({
 				likedwhiskey: currentStore.userReducer.likedwhiskey,
-				showSearch: currentStore.showReducer.showSearch
+				showSearch: currentStore.showReducer.showSearch,
+				showMoreButton: currentStore.showReducer.showMoreButton
 			})
 		}.bind(this));
 	},
@@ -83,9 +86,11 @@ export default React.createClass({
 					
 					return (
 						<div className="itemsLayout" key={i}>
-							<div className="itemImage">
+						{this.getStatus(item.id) ? <LikeHeart item={item} /> : <NoHeart item={item} />}
+							<div className="itemImageContainer">
+
 								<img className="itemImage" src={item.img_url} />
-								{this.getStatus(item.id) ? <LikeHeart item={item} /> : <NoHeart item={item} />}
+								
 							</div>
 							<div className="itemDescription">
 								<div className="titleDiv">{item.title}</div>

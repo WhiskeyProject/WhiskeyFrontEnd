@@ -2,7 +2,8 @@ const userInitialState = {
   likedwhiskey: [],
   usersearches: [],
   tagSearch: [],
-  itemCount: 0
+  itemCount: 0,
+  containerInfo: []
 
 }
 
@@ -16,7 +17,8 @@ export default function (state = userInitialState, action) {
           usersearches: state.usersearches,
           likedwhiskey: action.likedwhiskey,
           tagSearch: state.tagSearch,
-          itemCount: state.itemCount
+          itemCount: state.itemCount,
+          containerInfo: action.containerInfo
         }
 
     case 'GET_SEARCHES':    
@@ -24,7 +26,8 @@ export default function (state = userInitialState, action) {
           usersearches: [...state.usersearches, ...action.usersearches],
           likedwhiskey: state.likedwhiskey,
           tagSearch: state.tagSearch,
-          itemCount: state.itemCount
+          itemCount: state.itemCount,
+          containerInfo: state.containerInfo
         }
 
     case 'GET_TAGSEARCH':    
@@ -32,7 +35,8 @@ export default function (state = userInitialState, action) {
           usersearches: state.usersearches,
           likedwhiskey: state.likedwhiskey,
           tagSearch: action.tagSearch,
-          itemCount: action.itemCount
+          itemCount: action.itemCount,
+          containerInfo: action.containerInfo
         }
 
     case 'GET_MORE':
@@ -40,7 +44,8 @@ export default function (state = userInitialState, action) {
           usersearches: state.usersearches,
           likedwhiskey: state.likedwhiskey,
           tagSearch: [...state.tagSearch, ...action.tagSearch],
-          itemCount: state.itemCount
+          itemCount: state.itemCount,
+          containerInfo: [...state.containerInfo, ...action.containerInfo]
         }
 
     // case 'TOGGLE_HIGHLIGHT':

@@ -1,27 +1,7 @@
-body {
-	// background: #DAC7B1;
-	background: black;
-}
-.barrelBg {
-	// background: url("../images/barrelBg.jpg") no-repeat center center fixed;
-	// -webkit-background-size: cover;
-	// -moz-background-size: cover;
-	// -o-background-size: cover;
-	// background-size: cover;
-	// width: 100%;
-	// height: 100%;
-	// position: absolute;
-	// top: 81px;
-	// left: 0;	
-}
 .container {
 	width: 1200px;
 	// border: 5px solid red;
 	margin: 0 auto;
-	// box-sizing: border-box;
-	// background: white;
-	// background: #D4BFA4;
-
 }
 .navheader {
 	width: 1200px;
@@ -54,19 +34,9 @@ body {
 	height: 30px;
 	line-height: 30px;
 	background: #B69E82;
-	// font-family: "Special Elite";
 	font-weight: 700;
 	width: 180px;
-	// background: url("../images/whiskeyMap.jpg") no-repeat center center fixed;
-	// -webkit-background-size: cover;
-	// -moz-background-size: cover;
-	// -o-background-size: cover;
-	// background-size: cover;
-	// color: white;
-	// position: relative;
-	// top: 0;
-	// left: 0;
-	// background-image: url("../images/barrel.png");
+	text-shadow: 1px 1px #e7e7e7;
 }
 .topRounded {
 	border-top-right-radius: 8px;
@@ -76,41 +46,15 @@ body {
 	border-bottom-right-radius: 8px;
 	border-bottom-left-radius: 8px;
 }
-.tempResults {
-	// border: 1px solid black;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	width: 1000px;  // 1000px is good for result boxes
-	// min-height: 900px;
-	height: 100%;
-	padding: 15px;
-	// border: 10px solid orange;
-	// background: url("../images/darkerLogo.png");
-	// background: url("../images/darkerLogo.png") no-repeat center center fixed;
-	// -webkit-background-size: cover;
-	// -moz-background-size: cover;
-	// -o-background-size: cover;
-	// background-size: cover;
-	// width: 100%;
-	// height: 100%;
-	// position: relative;
-	// top: 180px;
-	// left: 380px;
 
-	
-}
 .positionLikeBox, .positionMoreButton, .positionSaveBar {
 	position: relative;
 	top: -810px;
 	left: 0px;
 }
 
-
-.resultsFlex {
-	display: flex;
-	flex-direction: column;
-	// border: 4px solid yellow;
+.positionLikeBox {
+	left: 60px;
 }
 
 .barrelPopUp {
@@ -139,8 +83,9 @@ summary {
 	background: #B69E82;
 	text-align: center;
 	color: white;
-	font-size: 14px;
+	font-size: 18px;
 	margin: 30px auto;
+	font-family: 'Swistblnk Monthoers';
 }
 .moreButton:hover {
 	background: #9A7C5A;
@@ -152,6 +97,7 @@ summary {
 	font-size: 14px;
 	font-weight: 700;
 	margin-bottom: 5px;
+	color: #e7e7e7;
 }
 .whatYouLike {
 	width: 620px;
@@ -159,8 +105,6 @@ summary {
 	// border: 1px solid red;
 	font-family: "Special Elite";
 	font-size: 28px;
-	// align-self: flex-start;
-	// background: #CBD0D2;
 	color: white;
 	padding-top: 20px;
 }

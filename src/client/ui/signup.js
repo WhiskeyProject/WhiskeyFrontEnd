@@ -38,6 +38,9 @@ export default React.createClass({
 		}
 		
 	},
+	closeBox: function(){
+		this.props.close();
+	},
 	handleSubmit: function(e){
 		e.preventDefault();
 		if(this.state.password === this.state.passwordMatch) {
@@ -61,9 +64,10 @@ export default React.createClass({
 	      			<form action="" method="post" onSubmit={this.handleSubmit} id="registrationForm">
 			      		<input type="text" onChange={this.handleChange} value={this.state.username} name="user" id="username" placeholder="Username"/><br />
 			      		<input type="password" onChange={this.handleChange} value={this.state.password} id="password" name="password" placeholder="Password"/> 
-			      		<input type="password" onChange={this.handleChange} value={this.state.passwordMatch} id="passwordMatch" placeholder="Password"/> 
+			      		<input type="password" onChange={this.handleChange} value={this.state.passwordMatch} id="passwordMatch" placeholder="Confirm Password"/> 
 
 			      		<button className="signupButton">Sign Up</button>
+			      		<i className="fa fa-times-circle posCircle" onClick={this.closeBox}></i>
 			      		{this.state.error ? <div className='signupError'>Passwords do not match</div> : ''}
 
 	      			</form>

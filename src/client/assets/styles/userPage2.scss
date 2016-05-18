@@ -1,11 +1,12 @@
 .userPageContainer {
 	width: 1200px;
 	height: 900px;
-	margin: 50px auto; 
+	margin: 0 auto; 
 	// border: 1px solid red;
 	display: flex;
 	flex-wrap: nowrap;
-	// justify-content: space-between;
+	justify-content: space-between;
+	flex-direction: column;
 }
 // .likeFlex {
 // 	width: 1000px;
@@ -17,7 +18,14 @@
 // }
 .userSearchSave {
 	// border: 1px solid green;
-	width: 180px;
+	width: 280px;
+	// color: white;
+	background:  #B69E82;
+	border-radius: 8px;
+}
+.userSearchSave p {
+	text-align: center;
+	text-shadow: 1px 1px #e7e7e7;
 }
 .likeBoxItemBox {
 	// border: 2px solid pink;
@@ -33,7 +41,71 @@
 	margin-left: 20px;
 }
 .headerLinks {
-	width: 200px;
+	width: 250px;
 	height: auto;
 	// border: 2px solid blue;
+	text-align: right;
+}
+.headerFlex {
+	display: flex;
+	flex-wrap: nowrap;
+	// border: 1px solid green;
+	width: 1300px;
+	justify-content: space-between;
+	padding-top: 12px;
+	align-items: flex-end;
+}
+.centerSearchInput {
+	width: 1200px;
+	margin: 10px auto;
+	// border: 1px solid red;
+	display: flex;
+	justify-content: flex-end;
+}
+.divTitleBar {
+	width: 1200px;
+	height: 80px;
+	// border: 1px solid green;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	
+}
+.titleCard {
+	width: 400px;
+	height: 80px;
+	background: #e7e7e7;
+	text-align: center;
+	padding: 25px;
+	color: #6a5048;
+	font-size: 24px;
+}
+.divTitleBar a {
+	align-self: flex-end; 
+}
+.backToLikes {
+	width: 140px;
+	height: 30px;
+	line-height: 30px;
+	background: #e7e7e7;
+	color: #6a5048;
+	text-align: center;
+	margin: 20px auto;
+}
+.userPageBigBox {
+	width: 1200px;
+	height: 900px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	// border: 3px solid white;
+}
+.userSearchBox {
+	margin: 0 auto;
+	width: 90%;
+	height: 400px;
+	border: 2px solid #6a5048;
+	overflow: auto;
+	background: #C2B099;
+	background:  #fff3e6;
 }

@@ -23,12 +23,12 @@ export default React.createClass({
 			itemCount: 0,
 			tagSearch: [],
 			likes: [],
-			fruit:['apple','banana','cherry','citrus','fruity', 'lemon', 'orange', 'pear', 'raisins', 'zest' ],
-			structure: ['balanced', 'complex', 'dry', 'earthy', 'heavy', 'light', 'lingering', 'mellow', 'mild', 'old', 'smooth'],
+			fruit:['apple','banana','bitter','brine', 'butterscotch', 'buttery', 'candy', 'cherry', 'chocolate', 'cinnamon', 'citrus', 'clove', 'cocoa', 'coffee', 'corn', 'creamy', 'fruity', 'ginger', 'honey', 'lemon', 'licorice', 'maple', 'mint', 'nutmeg', 'nutty', 'orange', 'pear', 'raisins', 'salty', 'sherry', 'spices', 'sugar', 'tea', 'toffee', 'vanilla', 'zest'],
+			structure: ['balanced', 'barley', 'complex', 'dry', 'earthy', 'floral', 'green', 'heavy', 'herbal', 'light', 'malty', 'mellow', 'mild', 'oak', 'old', 'peaty', 'peppery', 'rich', 'roses', 'smokery', 'smooth', 'sour', 'spicy', 'sweet', 'tobacco', 'wood'],
 			food: ['barley', 'buttery', 'butterscotch', 'candy', 'chocolate', 'cinnamon', 'cocoa', 'corn', 'honey', 'tea', 'toffee'],
 			items: ['clove', 'coffee', 'floral', 'licorice', 'malty', 'mint', 'nutmeg', 'peaty', 'peppery', 'roses', 'spices', 'sugar', 'tobacco', 'vanilla', 'wood', 'sherry'],
 			general: ['bitter', 'brine', 'creamy', 'ginger', 'herbal', 'maple', 'nutty', 'oak', 'rich', 'salty', 'smokey', 'sour', 'spicy', 'sweet'],
-			appearance: ['amber', 'brown', 'green', 'caramel', 'pale'],
+			appearance: ['amber', 'brown', 'caramel', 'pale'],
 			price: ['$', '$$', '$$$'],
 			proof: ['A little', 'A lot', 'Way too much'],
 			likedwhiskey: []
@@ -78,13 +78,22 @@ export default React.createClass({
 			})
 		}.bind(this))
 	},
-	// componentWillUnmount: function(){
-	// 	this.unsubscribe;
-	// },
+	componentWillUnmount: function(){
+		this.unsubscribe;
+		store.dispatch({
+			type: 'CHANGE_SHOWSEARCH',
+			showSearch: false
+		})
+		store.dispatch({
+			type: 'CHANGE_SHOWMOREBUTTON',
+			showMoreButton: false
+		})
+	},
 	render: function(){
 		return (
 			<div className="bgImage">
 				<header className="carryLogo">
+					<div className="headerFlex">
 					<div className="logoDiv">
 						<Link to="/landingPage3"><img src={image} /></Link>
 					</div>
@@ -92,13 +101,14 @@ export default React.createClass({
 						<Link to="/userPage2">Profile</Link>
 						<Link to="/landingPage3">Logout</Link>
 					</div>
+					</div>
 				</header>
 			<div className="barrelBg">
 			<div className="container">
 				
 				<div className="navheader">
 					<div className="whatYouLike">Now, tell us what you like...</div>
-					<div className="searchHeader">
+					<div className="centerSearchInput">
 						<SearchInput />
 					</div>
 
@@ -112,7 +122,7 @@ export default React.createClass({
 				
 					<div className="tasteCategoryBox">
 					<details open>
-						<summary className="barrelBar topRounded">Fruit</summary>
+						<summary className="barrelBar topRounded">Notes</summary>
 						<div className="barrelPopUp bottomRounded">
 							{this.state.fruit.map(function(item,i){
 							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
@@ -123,7 +133,7 @@ export default React.createClass({
 
 					<div className="tasteCategoryBox">
 					<details open>
-						<summary className="barrelBar topRounded">Character</summary>
+						<summary className="barrelBar topRounded">Nose</summary>
 						<div className="barrelPopUp bottomRounded">
 							{this.state.food.map(function(item,i){
 							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
@@ -203,8 +213,8 @@ export default React.createClass({
 				</form>
 				</div>
 				
-					
 					<LikeBoxItem likedwhiskey={this.state.likedwhiskey} tagSearch={this.state.tagSearch} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} />
+					{/* {this.state.showSearch ? <LikeBoxItem likedwhiskey={this.state.likedwhiskey} tagSearch={this.state.tagSearch} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} /> : ""}  */}
 
 				
 				{/* {this.state.showLikesSearch ? <Item tagSearch={this.state.tagSearch} showLikesSearch={this.state.showLikesSearch} likes={this.state.likes}/> : ""} */}

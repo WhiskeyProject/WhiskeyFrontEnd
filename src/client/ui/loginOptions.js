@@ -15,6 +15,16 @@ export default React.createClass({
 			signup: false
 		}
 	},
+	closeLogin: function () {
+		this.setState({
+			currentUser: false
+		})
+	},
+	closeSignup: function () {
+		this.setState({
+			signup: false
+		})
+	},
 	handleClick: function(e){
 		var val = e.target.id;
 		console.log(val);
@@ -36,10 +46,10 @@ export default React.createClass({
 	render: function(){
 		return (
 			<div className="login">
-				{this.state.currentUser ? <Login /> : ""}
-				{this.state.signup ? <Signup /> : ""}
-				<div className="in" onClick={this.handleClick} id="login">Login</div>
-				<div className="up" onClick={this.handleClick} id="signup">Signup</div>
+				{this.state.currentUser ? <Login close={this.closeLogin} /> : ""}
+				{this.state.signup ? <Signup close={this.closeSignup} /> : ""}
+				<a href="#"><div className="in" onClick={this.handleClick} id="login">Login</div></a>
+				<a href="#"><div className="up" onClick={this.handleClick} id="signup">Signup</div></a>
 			</div>
 		)
 	}
