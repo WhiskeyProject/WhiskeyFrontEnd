@@ -12,7 +12,7 @@ instance.new = function (url) {
 
 if (Cookie.get('token')) {
  var token = Cookie.get('token');
- instance.interceptors.request.use(function(config){
+ interceptor = instance.interceptors.request.use(function(config){
    config.headers['Authorization'] = 'Token ' + token;
    return config;
  });

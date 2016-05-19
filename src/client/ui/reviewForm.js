@@ -5,19 +5,16 @@ import SlidingStarRate from 'ui/slidingStarRate';
 import { postNewReview } from 'api/data';
 import StarRatingComponent from 'react-star-rating-component';
 
-
-
-
 require("assets/styles/reviewForm.scss");
 
 export default React.createClass({
 	getInitialState: function(){
-		return ({
+		return {
 			whiskey: 0,
 			title: "",
 			text: "",
 			rating: 0
-		})
+		}
 	},
 	handleChange: function(e){
 		e.preventDefault();
@@ -29,32 +26,25 @@ export default React.createClass({
 	
 	handleSubmit: function(e){
 		e.preventDefault();
-		console.log('Whiskey ID sent:', this.props.id);
 		var ratingNum = this.state.rating * 20;
-		console.log(ratingNum);
 		var reviewData = {
 			whiskey: this.props.id,
 			title: this.state.title,
 			text: this.state.text,
 			rating: ratingNum
-		}
-		console.log("reviewData", reviewData);	
+		}	
 		postNewReview(reviewData);
 		
-			this.setState({
-				title: "",
-				text: "",
-				rating: 0
-
-		})
-		
-		
-
+		this.setState({
+			whiskey: this.props.id,
+			title: "",
+			text: "Thank You for Rating This.",
+			rating: 0
+		});
+		// window.location=window.location;
 	},
 
 	onStarClick(rating, prevRating, name) {
-		console.log(arguments);
-		console.log(rating);
         this.setState({rating: rating});
     },
 	render: function(){

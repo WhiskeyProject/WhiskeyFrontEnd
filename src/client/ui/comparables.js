@@ -80,7 +80,6 @@ export default React.createClass({
 								<StarRating rating={item.rating} />
 							</div>
 							<div className="choices">
-								<a href="#"><div onClick={this.handleClick.bind(this, item)} className="choiceA"></div></a>
 								<Link to={"/productDetailPage/" + item.id}><div onClick={this.handleClick.bind(this, item)} className="choiceB">Details and Suggestions</div></Link>
 							</div>
 						</div>

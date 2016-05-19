@@ -41,8 +41,8 @@
 .likesImage, .suggestImage, .itemImage {
 	width: auto;
 	height: 150px;
-	
-	border-radius: 8px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
 .imageContainer {
 	width: 200px;
