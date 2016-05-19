@@ -180,18 +180,22 @@ header a {
 	background-color: #5C504D;
 	color: white;
 	font-size: 12px; 
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 	
 }
 
-.choiceA {
-	width: 90px;
-	padding: 0 0 0 5px;
-	color: white;
-}
+// .choiceA {
+// 	width: 90px;
+// 	padding: 0 0 0 5px;
+// 	color: white;
+// }
 .choiceB {
-	width: 70px;
-	
+	width: 200px;
+	// border: 1px solid yellow;
 	color: #e7e7e7;
+	text-align: center;
+	line-height: 24px;
 }
 
 .prodDetails {
@@ -232,12 +236,21 @@ header a {
 .noHeart:hover {
 	color: red;
 }
-// .moveHeart {
-// 	position: relative;
-// 	top: -35px;
-// 	left: -120px;
-// }
-
+#heartAttack {
+	position: relative;
+	top: -40px;
+	left: -170px;
+}
+#heartAttackSpan {
+	position: absolute;
+	top: -35px;
+	left: -50px;
+	width: 140px;
+	text-align: center;
+}
+.fa-heart:hover #heartAttackSpan {
+	display: block;	
+}
 .saveSearchOption2 {
 	width: 400px;
 	height: 75px;
@@ -282,8 +295,4 @@ header a {
 .productDetailBg {
 	margin: 60px 0 0 120px;
 }
-#heartAttack {
-	position: relative;
-	top: -40px;
-	left: -170px;
-}
+

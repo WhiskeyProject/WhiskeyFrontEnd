@@ -1,8 +1,8 @@
 import React from 'react';
 import store from 'store';
-import { getWhiskey, getLikes } from 'api/data';
+import { getWhiskey, getLikes, logout } from 'api/data';
 import StarRating from 'ui/starRating';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import Comparables from 'ui/comparables';
 import Reviews from 'ui/reviews';
 import ReviewForm from 'ui/reviewForm';
@@ -39,7 +39,8 @@ export default React.createClass({
 				likedwhiskey: currentStore.userReducer.likedwhiskey,
 				moveHeart: "moveHeart",
 				moveOption: "moveOption",
-				heartAttack: "heartAttack"
+				heartAttack: "heartAttack",
+				heartAttackSpan: "heartAttackSpan"
 
 			});
 			
@@ -47,6 +48,10 @@ export default React.createClass({
 	},
 	handleClick: function(e){
 		e.preventDefault();
+	},
+	userLogout: function(){
+		logout();
+		browserHistory.push('/landingPage3');
 	},
 	
 	getIDs: function(){
@@ -76,9 +81,10 @@ export default React.createClass({
 						<Link to="/landingPage3"><img src={image} /></Link>
 					</div>
 					<div className="headerLinks">
+						<Link to="/originalContentPage">General Info</Link>
 						<Link to="/likesPage2">New Search</Link>
 						<Link to="/userPage2">Profile</Link>
-						<Link to="/landingPage3">Logout</Link>
+						<a href="#" onClick={this.userLogout}>Logout</a>
 					</div>
 					</div>
 				</header>
@@ -86,9 +92,9 @@ export default React.createClass({
 				<div className="mainImage productDetailBg"><img src={image} /></div>
 					<div className="productFlex  prodDetailContainer">
 						<div className="imageDetailBox">
-							<div className="detailImage"><img src={this.state.whiskeyItem.img_url} /></div>
-							{this.getStatus(this.state.whiskeyItem.id) ? <LikeHeart item={this.state.whiskeyItem} moveHeart={this.state.moveheart} moveOption={this.state.moveOption} heartAttack={this.state.heartAttack} /> : <NoHeart item={this.state.whiskeyItem} moveHeart={this.state.moveheart} moveOption={this.state.moveOption}  heartAttack={this.state.heartAttack} />}
-							<div className="avgPrice">Average Price: <span className="priceColor">${this.state.whiskeyItem.price}</span></div>
+							<div className="detailImage"><img src={this.state.whiskeyItem.detail_img_url} /></div>
+							{this.getStatus(this.state.whiskeyItem.id) ? <LikeHeart item={this.state.whiskeyItem} moveHeart={this.state.moveheart} moveOption={this.state.moveOption} heartAttack={this.state.heartAttack} heartAttackSpan={this.state.heartAttackSpan} /> : <NoHeart item={this.state.whiskeyItem} moveHeart={this.state.moveheart} moveOption={this.state.moveOption}  heartAttack={this.state.heartAttack} heartAttackSpan={this.state.heartAttackSpan} />}
+							<div className="avgPrice">Average Price: <span className="priceColor priceSize">${this.state.whiskeyItem.price}</span></div>
 							<StarRating rating={this.state.whiskeyItem.rating} />
 							
 							{/* <AddFavorite id={this.state.whiskeyItem.id} /> */}
@@ -104,7 +110,7 @@ export default React.createClass({
 							<div className="prodTags"> 
 							{this.state.tags.map(function(item, i){
 								return (
-								<span key={i}> {item.title}, </span>
+								<span key={i} className="addComma"> {item.title}, </span>
 								)
 							})}
 							</div>

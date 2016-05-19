@@ -1,10 +1,10 @@
 	import React from 'react';
 import store from 'store';
-import { getLikes, getWhiskey, getSearches } from 'api/data';
+import { getLikes, getWhiskey, getSearches, logout } from 'api/data';
 import Suggestions from 'ui/suggestions';
 import UserSearches from 'ui/userSearches';
 import SearchInput from 'ui/searchInput';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import LikeBoxItem from 'ui/likeBoxItem';
 
 require("assets/styles/userPage2.scss");
@@ -64,11 +64,24 @@ export default React.createClass({
 			titleDiv: "Your Liked List",
 			showBackToLikes: false
 		})
+		store.dispatch({
+			type: 'CHANGE_SHOWMOREBUTTON',
+			showMoreButton: false
+		})
+
 	},
+	
 	showLikeButton: function(){
 		this.setState({
 			showBackToLikes: true
 		})
+	},
+	componentWillUnmount: function(){
+		this.unsubscribe();
+	},
+	userLogout: function(){
+		logout();
+		browserHistory.push('/landingPage3');
 	},
 
 	render: function(){
@@ -80,8 +93,9 @@ export default React.createClass({
 						<Link to="/landingPage3"><img src={image} /></Link>
 					</div>
 					<div className="headerLinks">
+						<Link to="/originalContentPage">General Info</Link>
 						<Link to="/likesPage2">New Search</Link>
-						<Link to="/landingPage3">Logout</Link>
+						<a href="#" onClick={this.userLogout}>Logout</a>
 					</div>
 					</div>
 				</header>
@@ -107,7 +121,6 @@ export default React.createClass({
 					<LikeBoxItem tagSearch={this.state.containerInfo} likedwhiskey={this.state.likedwhiskey} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} /> 
 						
 					<div>
-					{this.state.show ? <Suggestions comparables={this.state.comparables} /> : ""}
 					</div>
 				</div>
 				</div>

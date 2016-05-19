@@ -21,7 +21,7 @@ export default React.createClass({
 			this.setState({
 				tagSearch: currentStore.userReducer.tagSearch,
 				showSearchItem: currentStore.showReducer.showSearchItem,
-				searchTag: this.state.searchTag
+				searchTag: currentStore.whiskeyReducer.searchTag
 			})
 		}.bind(this))
 	},
@@ -33,12 +33,14 @@ export default React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
 		getGeneralSearch(this.state.searchTag);
+		this.props.searchFirst(this.state.searchTag);
 		this.props.getDivTitle(this.state.searchTag, "You searched for ");
 		// store.dispatch({
 		// 	type: 'CHANGE_SHOWSEARCH',
 		// 	showSearch: true
 		// })
-		this.setState({
+		store.dispatch({
+			type: 'CLEAR_SEARCHTAG',
 			searchTag: ""
 		})
 		this.props.showLikeButton();

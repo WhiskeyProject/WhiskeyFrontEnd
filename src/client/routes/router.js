@@ -20,6 +20,7 @@ import UserPage from 'ui/userPage';
 import UserPage2 from 'ui/userPage2';
 import Item from 'ui/item';
 import ProductDetailPage from 'ui/productDetailPage';
+import OriginalContentPage from 'ui/originalContentPage';
 
 
 
@@ -35,7 +36,7 @@ export default (
       <Route path='/userPage2' component={UserPage2} />
       <Route path='/landingPage2' component={LandingPage2} />
       <Route path='/landingPage3' component={LandingPage3} />
-
+      <Route path='/originalContentPage' component={OriginalContentPage} />
       <Route path='/productDetailPage/:id' component={ProductDetailPage} />
       <Route path='/item' component={Item} />
       	<Route path='/' component={LandingPage3} />

@@ -3,8 +3,17 @@
 	// }
 .detailImage img {
 	width: auto;
-	height: 400px;
+	height: 420px	;
 }
+.detailImage {
+	border-radius: 8px;
+}
+// .detailImage {
+// 	background: white;
+// 	width: auto;
+// 	height: 420px;
+// 	text-align: center;
+// }
 .productFlex {
 	width: 1200px;
 	height: auto;
@@ -15,13 +24,16 @@
 	margin: 20px 0 20px 0;
 }
 .imageDetailBox {
-	width: 400px;
+	width: 336px;
 	height: 500px;
-	border: 1px solid red; 
+	// border: 1px solid red; 
 	display: flex;
 	flex-direction: column;
 	// justify-content: space-between;
 	align-items: center;
+	background: #111;
+
+
 }
 .titleDetailBox {
 	display: flex;
@@ -69,16 +81,17 @@
 	font-family: "Swistblnk Monthoers";
 	font-size: 22px;
 	margin: 15px 0 10px 30px;
-	color: #b2b2b2;;
+	color: #b2b2b2;
 }
 .leaveReview {
 	margin: 25px 0 10px 5px;
 
 }
 .priceColor {
-	color: #ccc;
-	font-size: 16px;
-	margin-top: 3px;	
+	color: #f9f9f9;
+	font-size: 12px;
+	margin-top: 3px;
+	text-shadow: 1px 1px #000;	
 }
 .prodDetailContainer {
 	position: relative;
@@ -87,7 +100,17 @@
 }
 .avgPrice {
 	color: #e7e7e7;
+	font-size: 14px;
 }
 .cheatDiv {
 	height: 20px;
 }
+.priceSize {
+	font-size: 14px;
+}
+// .addComma:after {
+// 	content: ',';
+// }
+// .addComma:last-child {
+// 	content: "?";
+// }

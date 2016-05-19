@@ -1,12 +1,12 @@
 import React from 'react';
 import store from 'store';
-import { getTagSearch, getLikes } from 'api/data';
+import { getTagSearch, getLikes, getGeneralSearch, logout } from 'api/data';
 import Item from 'ui/item';
 import StarRating from 'ui/starRating';
 import SearchInput from 'ui/searchInput';
 import LikeBoxItem from 'ui/likeBoxItem';
 import SaveSearch from 'ui/saveSearch';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 require('assets/styles/likesPage2.scss');
 var image = require("assets/images/darkerLogo.png");
@@ -45,7 +45,7 @@ export default React.createClass({
 	toggleStatus: function(item,index, e){
 		var val = item;
 		var allLikes = this.state.likes;
-		
+		console.log('value:', this.refs.price.value);
 		if(allLikes.indexOf(item)===-1){
 			allLikes.push(item);
 		} else {
@@ -89,6 +89,26 @@ export default React.createClass({
 			showMoreButton: false
 		})
 	},
+	searchFirst: function(str){
+		getGeneralSearch(str);
+		this.unsubscribe = store.subscribe(function(){
+			var currentStore = store.getState();
+			this.setState({
+				showSearch: currentStore.showReducer.showSearch,
+				tagSearch: currentStore.userReducer.tagSearch,
+				itemCount: currentStore.userReducer.itemCount,
+				showLikesSearch: currentStore.showReducer.showLikesSearch,
+				likes: currentStore.whiskeyReducer.likes,
+				showMoreButton: currentStore.showReducer.showMoreButton,
+				likedwhiskey: currentStore.userReducer.likedwhiskey
+			})
+		}.bind(this))
+
+	},
+	userLogout: function(){
+		logout();
+		browserHistory.push('/landingPage3');
+	},
 	render: function(){
 		return (
 			<div className="bgImage">
@@ -98,8 +118,9 @@ export default React.createClass({
 						<Link to="/landingPage3"><img src={image} /></Link>
 					</div>
 					<div className="headerLinks">
+						<Link to="/originalContentPage">General Info</Link>
 						<Link to="/userPage2">Profile</Link>
-						<Link to="/landingPage3">Logout</Link>
+						<a href="#" onClick={this.userLogout}>Logout</a>
 					</div>
 					</div>
 				</header>
@@ -109,7 +130,7 @@ export default React.createClass({
 				<div className="navheader">
 					<div className="whatYouLike">Now, tell us what you like...</div>
 					<div className="centerSearchInput">
-						<SearchInput />
+						<SearchInput searchFirst={this.searchFirst}/>
 					</div>
 
 				</div>
@@ -202,7 +223,7 @@ export default React.createClass({
 						<summary className="barrelBar topRounded">Price</summary>
 						<div className="barrelPopUp bottomRounded">
 							{this.state.price.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
+							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox" ref="price" value={"?price=" + item} />{item}</div>
 							}.bind(this))}	
 						</div>
 					</details>

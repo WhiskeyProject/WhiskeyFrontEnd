@@ -12,9 +12,9 @@ export default React.createClass({
 					{this.props.reviews.map(function(item, i) {
 						return (
 							<div className="eachReview" key={i}>
-							<div className="reviewTitle">{item.title}</div>
-							<StarRating rating={item.rating} />
-							<div className="reviewText">{item.text}</div>
+								<div className="reviewTitle">{item.title}</div>
+								<StarRating rating={item.rating} />
+								<div className="reviewText">{item.text}</div>
 							</div>
 						)
 					})}

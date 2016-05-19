@@ -1,0 +1,71 @@
+.whiskeyContent {
+	width: 1200px;
+	height: 900px;
+	border: 1px solid red;
+	margin: 0 auto;
+
+
+}
+.whiskeyImage {
+	width: 600px;
+	height: auto;
+	border: 2px solid #3B3230;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(20,20,20,1);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(20,20,20,1);
+	box-shadow: 10px 10px 5px 0px rgba(20, 20, 20,1);
+	
+}
+.whiskeyContent {
+	position: relative;
+	top: -810px;
+	left: 0;
+}
+.originalText {
+	color: #e7e7e7;
+	font-size: 18px;
+	margin: 0 0 10px 0;
+	padding: 12px;
+	border: 1px solid white;
+	font-family: "Arial";
+	width: 600px;
+	height: auto;
+
+}
+.whiskeyMapImage {
+	width: 600px;
+	height: auto;
+	border: 2px solid #3B3230;
+	-webkit-box-shadow: -9px -7px 5px 0px rgba(20,20,20,1);
+	-moz-box-shadow: -9px -7px 5px 0px rgba(20,20,20,1);
+	box-shadow: -9px -7px 5px 0px rgba(20,20,20,1);
+	
+}
+.originalTextTitle {
+	font-size: 32px;
+	color: white;
+	font-family: "Special Elite";
+	width: 400px;
+	height: 50px;
+	border: 1px solid yellow;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+.clearFloats {
+	clear: both;
+	height: 30px;
+}
+.textBoxSize {
+	width: 400px;
+	height: auto;
+	background-border: 1px solid yellow;
+}
+.bigContentFlex {
+	display: flex;
+	flex-wrap: nowrap;
+	border: 1px solid green;
+}
+.flex2 {
+	display: flex;
+	flex-direction: column;
+	background-border: 1px solid yellow;
+}

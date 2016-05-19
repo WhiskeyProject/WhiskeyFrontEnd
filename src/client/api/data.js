@@ -114,22 +114,26 @@ export function getGeneralSearch(str){
 }
 
 
-export function changeFavorite(obj){
-  return api.put('changeliked/', obj).then(function(resp){
-    getLikes();
-  });
-}
 
 export function postSavedSearch(obj){
     return api.post('tagsearch/', obj);
 }
 
+export function changeFavorite(obj){
+  return api.put('changeliked/', obj).then(function(resp){
+    getLikes(); 
+  });
+}
 
-
-// export function postLikes(likes, cb){
-//   return api.post('')
-// }
-
+export function getMyLikes() {
+  return api.get('likedwhiskey/').then(function(resp){
+    store.dispatch({
+      type: 'GET_LIKES',
+      likedwhiskey: resp.data.results
+    })
+    console.log('My Likes:', resp.data.results)
+  })
+};
 
 export function getLikes() {
   return api.get('likedwhiskey/').then(function(resp){
@@ -138,7 +142,7 @@ export function getLikes() {
       likedwhiskey: resp.data.results,
       containerInfo: resp.data.results
     })
-    console.log('Likes:', resp.data.results)
+    console.log('Likes:', resp.data.results.length)
   })
 };
 export function getSearches() {

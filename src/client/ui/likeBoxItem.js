@@ -67,7 +67,7 @@ export default React.createClass({
 		// 	iDs: iDs
 		// })
 	},
-	getStatus: function(item, ){
+	getStatus: function(item){
 		this.getIDs();
 		if(x.indexOf(item) === -1){
 			return false;
@@ -85,22 +85,22 @@ export default React.createClass({
 				{this.props.tagSearch.map(function(item, i){
 					
 					return (
-						<div className="itemsLayout" key={i}>
+						<div className="itemsLayout" key={item.id}>
 						{this.getStatus(item.id) ? <LikeHeart item={item} /> : <NoHeart item={item} />}
-							<div className="itemImageContainer">
+							<Link to={"/productDetailPage/" + item.id}><div className="itemImageContainer">
 
-								<img className="itemImage" src={item.img_url} />
+								<img className="itemImage" src={item.list_img_url} />
 								
-							</div>
+							</div></Link>
 							<div className="itemDescription">
 								<div className="titleDiv">{item.title}</div>
-								<div>{item.region}</div> 
-								<div className="priceColor">${item.price}</div>
+								<div className="textCategorys">Type/Region: <span className="priceColor">{item.region}</span></div> 
+								<div  className="textCategorys" >Avg Price: <span className="priceColor">${item.price}</span></div>
 								<StarRating rating={item.rating} />
 							</div>
 							<div className="choices">
 								<a href="#"><div onClick={this.handleClick.bind(this, item)} className="choiceA"></div></a>
-								<Link to={"/productDetailPage/" + item.id}><div className="choiceB">Product Details</div></Link>
+								<Link to={"/productDetailPage/" + item.id}><div className="choiceB">Details and Suggestions</div></Link>
 							</div>
 						</div>
 
