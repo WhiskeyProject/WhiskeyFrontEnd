@@ -36,6 +36,7 @@ export default React.createClass({
 				showMoreButton: currentStore.showReducer.showMoreButton
 			})
 		}.bind(this));
+
 	},
 
 	handleClick: function(item, e){

@@ -23,16 +23,17 @@ export default React.createClass({
 			itemCount: 0,
 			tagSearch: [],
 			likes: [],
-			fruit:['apple','banana','bitter','brine', 'butterscotch', 'buttery', 'candy', 'cherry', 'chocolate', 'cinnamon', 'citrus', 'clove', 'cocoa', 'coffee', 'corn', 'creamy', 'fruity', 'ginger', 'honey', 'lemon', 'licorice', 'maple', 'mint', 'nutmeg', 'nutty', 'orange', 'pear', 'raisins', 'salty', 'sherry', 'spices', 'sugar', 'tea', 'toffee', 'vanilla', 'zest'],
-			structure: ['balanced', 'barley', 'complex', 'dry', 'earthy', 'floral', 'green', 'heavy', 'herbal', 'light', 'malty', 'mellow', 'mild', 'oak', 'old', 'peaty', 'peppery', 'rich', 'roses', 'smokery', 'smooth', 'sour', 'spicy', 'sweet', 'tobacco', 'wood'],
+			fruit:['bitter','brine', 'buttery', 'clove', 'coffee', 'corn', 'creamy', 'ginger', 'maple', 'nutmeg', 'nutty', 'salty', 'sherry', 'spices', 'tea',],
+			structure: ['balanced', 'barley', 'complex', 'dry', 'earthy', 'floral', 'green', 'heavy', 'herbal', 'light', 'malty', 'mellow', 'mild', 'oak', 'old', 'peaty', 'peppery', 'rich', 'roses', 'smokey', 'smooth', 'sour', 'spicy', 'sweet', 'tobacco', 'wood'],
 			food: ['barley', 'buttery', 'butterscotch', 'candy', 'chocolate', 'cinnamon', 'cocoa', 'corn', 'honey', 'tea', 'toffee'],
-			items: ['clove', 'coffee', 'floral', 'licorice', 'malty', 'mint', 'nutmeg', 'peaty', 'peppery', 'roses', 'spices', 'sugar', 'tobacco', 'vanilla', 'wood', 'sherry'],
-			general: ['bitter', 'brine', 'creamy', 'ginger', 'herbal', 'maple', 'nutty', 'oak', 'rich', 'salty', 'smokey', 'sour', 'spicy', 'sweet'],
+			items: ['apple', 'banana', 'cherry', 'citrus', 'fruity', 'lemon', 'orange', 'pear', 'raisins', 'zest'],
+			general: ['butterscotch', 'candy', 'chocolate', 'cinnamon', 'cocoa', 'honey', 'licorice', 'mint', 'sugar', 'toffee', 'vanilla'],
 			appearance: ['amber', 'brown', 'caramel', 'pale'],
 			price: ['$', '$$', '$$$'],
 			proof: ['A little', 'A lot', 'Way too much'],
-			likedwhiskey: []
-		}
+			likedwhiskey: [],
+			startBox: true
+		}	
 	},
 	// componentWillmount: function(){
 	// 	this.unsubscribe = store.subscribe(function(){
@@ -43,6 +44,9 @@ export default React.createClass({
 	// 	})
 	// },
 	toggleStatus: function(item,index, e){
+		this.setState({
+			startBox: false
+		})
 		var val = item;
 		var allLikes = this.state.likes;
 		console.log('value:', this.refs.price.value);
@@ -112,6 +116,7 @@ export default React.createClass({
 	render: function(){
 		return (
 			<div className="bgImage">
+				{this.state.startBox ? <div className="startBox"><i className="fa fa-arrow-left" aria-hidden="true"></i> Start Your Search Here</div> : ""}
 				<header className="carryLogo">
 					<div className="headerFlex">
 					<div className="logoDiv">
@@ -141,17 +146,8 @@ export default React.createClass({
 				<form className="categories" id="categories" action="" method="post" onSubmit={this.handleSubmit}>
 				<div className="barrelBarFlex">
 				
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Notes</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.fruit.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>
-					</details>
-					</div>
-
+					
+					{/*}
 					<div className="tasteCategoryBox">
 					<details open>
 						<summary className="barrelBar topRounded">Nose</summary>
@@ -162,17 +158,8 @@ export default React.createClass({
 						</div>
 					</details>
 					</div>
-
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Proof</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.proof.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>
-					</details>
-					</div>
+					*/}
+					
 
 					<div className="tasteCategoryBox">
 					<details open>
@@ -187,7 +174,7 @@ export default React.createClass({
 
 					<div className="tasteCategoryBox">
 					<details open>
-						<summary className="barrelBar topRounded">Quality</summary>
+						<summary className="barrelBar topRounded">Fruit</summary>
 						<div className="barrelPopUp bottomRounded">
 							{this.state.items.map(function(item,i){
 							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
@@ -198,7 +185,7 @@ export default React.createClass({
 
 					<div className="tasteCategoryBox">
 					<details open>
-						<summary className="barrelBar topRounded">General</summary>
+						<summary className="barrelBar topRounded">Sweet</summary>
 						<div className="barrelPopUp bottomRounded">
 							{this.state.general.map(function(item,i){
 							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
@@ -207,6 +194,17 @@ export default React.createClass({
 					</details>
 					</div>
 
+					<div className="tasteCategoryBox">
+					<details open>
+						<summary className="barrelBar topRounded">Notes</summary>
+						<div className="barrelPopUp bottomRounded">
+							{this.state.fruit.map(function(item,i){
+							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
+							}.bind(this))}	
+						</div>
+					</details>
+					</div>
+					
 					<div className="tasteCategoryBox">
 					<details open>
 						<summary className="barrelBar topRounded">Appearance</summary>
@@ -228,12 +226,25 @@ export default React.createClass({
 						</div>
 					</details>
 					</div>
+
+					<div className="tasteCategoryBox">
+					<details open>
+						<summary className="barrelBar topRounded">Proof</summary>
+						<div className="barrelPopUp bottomRounded">
+							{this.state.proof.map(function(item,i){
+							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
+							}.bind(this))}	
+						</div>
+					</details>
+					</div>
+
 				</div>
 				
 
+
 				</form>
 				</div>
-				
+					
 					<LikeBoxItem likedwhiskey={this.state.likedwhiskey} tagSearch={this.state.tagSearch} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} />
 					{/* {this.state.showSearch ? <LikeBoxItem likedwhiskey={this.state.likedwhiskey} tagSearch={this.state.tagSearch} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} /> : ""}  */}
 

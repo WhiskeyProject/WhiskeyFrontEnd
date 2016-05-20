@@ -1,6 +1,6 @@
 import React from 'react';
 import store from 'store';
-import { getSearches, getTagSearch } from 'api/data';
+import { getSearches, getTagSearch, deleteUserSearchBox } from 'api/data';
 import SavedSearchList from 'ui/savedSearchList';
 import LikeBoxItem from 'ui/likeBoxItem';
 
@@ -46,8 +46,14 @@ export default React.createClass({
 		this.props.showLikeButton();
 
 	},
-	
-
+	deleteSaveBox: function(item, e){
+		e.preventDefault();         // Call to attach to icon   onCLick={this.deleteSaveBox.bind(this, item)} 
+		deleteUserSearchBox({
+			id: item.id,
+			search_string: item.search_string,
+			title: item.title
+		});
+	},
 	render: function(){
 		return (
 			<div>
@@ -55,7 +61,9 @@ export default React.createClass({
 				{this.props.usersearches.map(function(item, i){
 					return (
 						<div className="searchBoxes" key={item.id} onClick={this.handleClick.bind(this, item)}>
+						<i className="fa fa-trash" aria-hidden="true"></i>
 						{item.title} 	
+
 						</div>
 					)
 				}.bind(this))}

@@ -70,8 +70,8 @@ export default React.createClass({
 						{this.getStatus(item.id) ? <LikeHeart item={item} /> : <NoHeart item={item} />}
 							<Link to={"/productDetailPage/" + item.id}><div className="itemImageContainer">
 
-								<img className="itemImage" src={item.img_url} />
-								
+								<img className="itemImage" src={item.list_img_url} />
+								{console.log('Item', item.list_img_url)}
 							</div></Link>
 							<div className="itemDescription">
 								<div className="titleDiv">{item.title}</div>

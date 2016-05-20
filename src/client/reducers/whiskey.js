@@ -4,7 +4,8 @@ const whiskeyInitialState = {
   likes: [],
   tags: [],
   reviews: [],
-  searchTag: ""
+  searchTag: "",
+  randomFact: []
 }
 
 export default function (state = whiskeyInitialState, action) {
@@ -17,7 +18,8 @@ export default function (state = whiskeyInitialState, action) {
         likes: state.likes,
         tags: action.tags,
         reviews: [...action.reviews],
-        searchTag: state.searchTag
+        searchTag: state.searchTag,
+          randomFact: state.randomFact
     	}
 
     case 'GET_LIKETAGS':
@@ -27,18 +29,32 @@ export default function (state = whiskeyInitialState, action) {
           likes: action.likes,
           tags: state.tags,
           reviews: state.reviews,
-          searchTag: state.searchTag      
+          searchTag: state.searchTag,
+          randomFact: state.randomFact      
       }
 
-      case 'CLEAR_SEARCHTAG':
+    case 'CLEAR_SEARCHTAG':
       return {
           whiskeyItem: state.whiskeyItem,
           comparables: state.comparables,
           likes: state.likes,
           tags: state.tags,
           reviews: state.reviews,
-          searchTag: action.searchTag      
+          searchTag: action.searchTag,
+          randomFact: state.randomFact       
       }
+
+    case 'GET_RANDOMFACT':
+      return {
+          whiskeyItem: state.whiskeyItem,
+          comparables: state.comparables,
+          likes: state.likes,
+          tags: state.tags,
+          reviews: state.reviews,
+          searchTag: state.searchTag,
+          randomFact: action.randomFact      
+      }
+
      // case 'GET_REVIEWS':
      //  return {
      //      whiskeyItem: state.whiskeyItem,

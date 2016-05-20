@@ -1,6 +1,6 @@
 import React from 'react';
 import store from 'store';
-import { getWhiskey, getLikes, logout } from 'api/data';
+import { getWhiskey, getLikes, logout, getRandomFact } from 'api/data';
 import StarRating from 'ui/starRating';
 import { Link, browserHistory } from 'react-router';
 import Comparables from 'ui/comparables';
@@ -22,33 +22,24 @@ var x = [];
 export default React.createClass({
 	getInitialState: function(){
 		return {
-			whiskeyItem: {},
-			comparables: [],
-			tags: [],
-			reviews: [],
-			likedwhiskey: []
+			randomFact: [],
+			randomFactText: ""
 		}
 	},
 	componentWillMount: function(){
-		getLikes();
-		getWhiskey(this.props.params.id);
-		
+		getRandomFact();
 		this.unsubscribe = store.subscribe(function(){
 			var currentStore = store.getState();
 			this.setState({
-				whiskeyItem: currentStore.whiskeyReducer.whiskeyItem,
-				comparables: currentStore.whiskeyReducer.comparables,
-				tags: currentStore.whiskeyReducer.tags,
-				reviews: currentStore.whiskeyReducer.reviews,
-				likedwhiskey: currentStore.userReducer.likedwhiskey,
-				moveHeart: "moveHeart",
-				moveOption: "moveOption",
-				heartAttack: "heartAttack",
-				heartAttackSpan: "heartAttackSpan"
+				randomFact: currentStore.whiskeyReducer.randomFact,
+				randomFactText: currentStore.whiskeyReducer.randomFact[0].text
 
 			});
-			
 		}.bind(this))
+	},
+	userLogout: function(){
+		logout();
+		browserHistory.push('/landingPage3');
 	},
 	componentWillUnmount: function () {
 		this.unsubscribe();
@@ -71,6 +62,11 @@ export default React.createClass({
 				<div className="container">
 				<div className="mainImage productDetailBg"><img src={logoImage} /></div>
 					<div className="whiskeyContent">
+						<div className="bigContentFlex changeDirection">
+							<div className="randomFactBox">random bits...</div>
+							<div className="originalFactText">{this.state.randomFactText}</div>
+							
+						</div>
 						<div className="bigContentFlex">
 							<div className="flex1">
 								<img className="whiskeyImage" src={image} />

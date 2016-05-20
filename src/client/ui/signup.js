@@ -1,7 +1,6 @@
 import React from 'react';
-import { login } from 'api/data';
 import { Link, browserHistory } from 'react-router';
-import { addNewUser } from 'api/data';
+import { login, addNewUser } from 'api/data';
 
 require('assets/styles/login.scss');
 
@@ -43,9 +42,11 @@ export default React.createClass({
 	},
 	handleSubmit: function(e){
 		e.preventDefault();
+		browserHistory.push('/userPage2');
 		if(this.state.password === this.state.passwordMatch) {
 			addNewUser(this.state.username, this.state.password, function(){
-				browserHistory.push('/login');
+				browserHistory.push('/userPage2');
+				console.log('It gets past browserHistory');
 			}.bind(this)).catch(function(err){
 		}.bind(this));
 		} else {

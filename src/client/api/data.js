@@ -28,7 +28,15 @@ export function addNewUser(username, password, cb){
   });
 
 }
-
+export function getRandomFact(){
+  return api.get("randomfact/").then(function(resp){
+    store.dispatch({
+      type: 'GET_RANDOMFACT',
+      randomFact: resp.data.results
+    })
+    console.log('Random Fact', resp.data.results);
+  })
+}
 
 
 export function getWhiskey(id){
@@ -125,6 +133,8 @@ export function changeFavorite(obj){
   });
 }
 
+
+
 export function getMyLikes() {
   return api.get('likedwhiskey/').then(function(resp){
     store.dispatch({
@@ -154,6 +164,12 @@ export function getSearches() {
     console.log('Searches:', resp.data)
   })
 };
+
+export function deleteUserSearchBox(obj){
+  return api.put('usersearches/', obj).then(function(resp){
+    getSearches(); 
+  });
+}
 
 export function getSpecificItem(id){
   return api.get('whiskey/' + id + '/').then(function(resp){
