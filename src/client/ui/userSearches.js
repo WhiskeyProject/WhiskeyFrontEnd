@@ -47,12 +47,9 @@ export default React.createClass({
 
 	},
 	deleteSaveBox: function(item, e){
-		e.preventDefault();         // Call to attach to icon   onCLick={this.deleteSaveBox.bind(this, item)} 
-		deleteUserSearchBox({
-			id: item.id,
-			search_string: item.search_string,
-			title: item.title
-		});
+		e.preventDefault();         // Call to attach to icon    
+		deleteUserSearchBox(item.id);
+		this.props.updateSearches();
 	},
 	render: function(){
 		return (
@@ -60,11 +57,13 @@ export default React.createClass({
 
 				{this.props.usersearches.map(function(item, i){
 					return (
+						<div>
 						<div className="searchBoxes" key={item.id} onClick={this.handleClick.bind(this, item)}>
-						<i className="fa fa-trash" aria-hidden="true"></i>
-						{item.title} 	
-
+						{item.title} </div>
+						<div onClick={this.deleteSaveBox.bind(this, item)} className="deleteBox"><i className="fa fa-trash" aria-hidden="true"></i>
 						</div>
+						</div>
+						
 					)
 				}.bind(this))}
 			</div>

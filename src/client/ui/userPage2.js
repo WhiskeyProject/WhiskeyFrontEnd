@@ -76,6 +76,14 @@ export default React.createClass({
 			showBackToLikes: true
 		})
 	},
+	updateSearches: function(){
+		this.unsubscribe = store.subscribe(function(){
+			var currentStore = store.getState();
+			this.setState({
+				usersearches: currentStore.userReducer.usersearches
+			})
+		}.bind(this))
+	},
 	componentWillUnmount: function(){
 		this.unsubscribe();
 	},
@@ -113,7 +121,7 @@ export default React.createClass({
 				<div className="userSearchSave">
 					<p>Saved Searches</p>
 					<div className="userSearchBox">
-					<UserSearches getDivTitle={this.getDivTitle} usersearches={this.state.usersearches} showLikeButton={this.showLikeButton} />
+					<UserSearches getDivTitle={this.getDivTitle} usersearches={this.state.usersearches} showLikeButton={this.showLikeButton} updateSearches={this.updateSearches} />
 					</div>
 					{this.state.showBackToLikes ? <a href="#"><div className="backToLikes" onClick={this.goBack} >Back to Likes</div></a> : ""}
 				</div>

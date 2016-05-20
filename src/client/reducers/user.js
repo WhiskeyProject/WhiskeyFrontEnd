@@ -23,7 +23,7 @@ export default function (state = userInitialState, action) {
 
     case 'GET_SEARCHES':    
         return {
-          usersearches: [...state.usersearches, ...action.usersearches],
+          usersearches: action.usersearches,
           likedwhiskey: state.likedwhiskey,
           tagSearch: state.tagSearch,
           itemCount: state.itemCount,

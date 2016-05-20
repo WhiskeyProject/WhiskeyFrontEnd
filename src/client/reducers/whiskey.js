@@ -19,7 +19,7 @@ export default function (state = whiskeyInitialState, action) {
         tags: action.tags,
         reviews: [...action.reviews],
         searchTag: state.searchTag,
-          randomFact: state.randomFact
+        randomFact: state.randomFact
     	}
 
     case 'GET_LIKETAGS':

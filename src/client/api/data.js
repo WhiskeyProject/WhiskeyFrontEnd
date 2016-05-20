@@ -165,8 +165,8 @@ export function getSearches() {
   })
 };
 
-export function deleteUserSearchBox(obj){
-  return api.put('usersearches/', obj).then(function(resp){
+export function deleteUserSearchBox(id){
+  return api.delete("tagsearch/" + id + "/").then(function(resp){
     getSearches(); 
   });
 }
