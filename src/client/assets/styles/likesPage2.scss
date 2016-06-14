@@ -18,7 +18,7 @@ $brownTheme: #5C504D;
 }
 .whatYouLike {
 	min-width: 420px !important;
-	max-width: 850px;
+	max-width: 850px !important;
 	max-height: 100px;
 	// border: 5px solid red;
 	font-family: "Special Elite";
@@ -28,18 +28,11 @@ $brownTheme: #5C504D;
 	overflow-x: scroll;
     overflow-y: hidden;
 }
-.newSaveBox {
-	width: 450px;
-	height: 60px;
-	// border: 1px solid yellow;
-	// background: white;
-}
+
 .centerSearchInput {
 	width: 380px !important;
-	margin: 10px auto;
 	// border: 5px solid blue;
-	display: flex;
-	justify-content: flex-end;
+	align-self: center;
 }
 
 .bigFlex {

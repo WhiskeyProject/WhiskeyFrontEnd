@@ -109,13 +109,14 @@ export default React.createClass({
 
 				
 				<div className="container">
+
 					<div className="navheader">
 						<div className="whatYouLike">{this.state.titleDiv}</div>
-						<div className="newSaveBox"></div>
 						<div className="centerSearchInput">
 							<SearchInput getDivTitle={this.getDivTitle} showLikeButton={this.showLikeButton} startBoxStatus={this.startBoxStatus} />
 						</div>
 					</div>
+					
 					<div className="pickStuff"></div>
 					<div className="userPageBigBox">
 						<div className="userSearchSave">

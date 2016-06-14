@@ -52,12 +52,14 @@ export default React.createClass({
 		})
 
 	},
+	componentWillUnmount: function(){
+		this.unsubscribe();
+	},
 	render: function(){
 		return (
 
 			<div className="saveSearchOption2">
 				<form onSubmit={this.handleSubmit}>
-
 					<input ref="title" type="text" name="saveSearch" onChange={this.handleChange} value={this.state.title} placeholder="Enter Search Title"/>
 					<button type="submit" className="saveSearchText">save this search</button>
 				</form>

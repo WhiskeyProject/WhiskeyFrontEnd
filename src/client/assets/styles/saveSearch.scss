@@ -1,20 +1,20 @@
 .saveSearchOption2 {
-	width: 400px;
-	height: 75px;
-	border: 1px solid red;
-	background: #6E6460;
-	border-radius: 8px;
+	// width: 400px;
+	// height: 75px;
+	// border: 1px solid red;
+	// background: #6E6460;
+	// border-radius: 8px;
 	// margin: 0 auto;
 	// padding: 8px;
 	// padding-left: 110px;
-	// position: relative;
-	// top: 0; 
-	// left: 0;
+	position: relative;
+	top: -815px; 
+	left: 300px;
 	
 }
 
 .saveSearchOption2 input[type=text] {
-	width: 200px;
+	width: 400px;
 	height: 30px;
 	line-height: 30px;
 	font-size: 14px;
@@ -24,7 +24,7 @@
 }
 
 .saveSearchText {
-	width: 200px;
+	width: 400px;
 	background: #3B322F;
 	height: 30px;
 	line-height: 30px;

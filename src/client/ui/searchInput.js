@@ -49,7 +49,9 @@ export default React.createClass({
 		this.props.showLikeButton();
 
 	},
-	
+	componentWillUnmount: function(){
+		this.unsubscribe();
+	},
 
 	render: function(){
 		return (

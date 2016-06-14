@@ -13,6 +13,7 @@ export default React.createClass({
 			opinion: "like"
 		})
 	},
+	
 	render: function(){
 		return (
 			<div className="addFavoriteButton" onClick={this.handleClick}>Add To Favorites</div>

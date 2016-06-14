@@ -47,6 +47,9 @@ export default React.createClass({
 	onStarClick(rating, prevRating, name) {
         this.setState({rating: rating});
     },
+    componentWillUnmount: function(){
+		this.unsubscribe();
+	},
 	render: function(){
 		return (
 			<div className="reviewFormFlex prodDetailContainer">

@@ -6,6 +6,7 @@ require("assets/styles/headerComponent.scss");
 var image = require("assets/images/darkerLogo.png");
 
 export default React.createClass({
+	
 	render: function(){
 		return (
 			<div>
