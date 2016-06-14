@@ -1,0 +1,42 @@
+.searchInputDiv {
+	display: flex;
+	flex-direction: row; 
+	flex-wrap: nowrap;
+	width: 325px;
+	height: 35px;
+	overflow: hidden;
+	// justify-content: flex-end;
+}
+
+#searchFieldButton {
+	width: 100px;
+	height: 38px;
+	padding-top: 5px;
+	background: #5C504D;
+	color: white;
+	font-size: 14px;
+	border: 1px solid #5C504D;
+}
+
+#searchField input[type=search] {
+	width: 185px;
+	height: 34px;
+	// line-height: 35px;
+	outline: none;
+	padding-left: 10px;
+	color: #5C504D;
+	// position: relative;
+	// z-index: 2;
+}
+.fa-search {
+	width: 25px;
+	height: 40px;
+	color: white;
+	background: #5C504D;
+	text-align: center; 
+	padding-top: 11px;
+}
+
+#searchField ::-webkit-input-placeholder {
+	font-size: 12px;
+}

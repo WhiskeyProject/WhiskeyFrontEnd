@@ -1,0 +1,145 @@
+.whiskeyContent {
+	width: 1200px;
+	height: 900px;
+	// border: 1px solid red;
+	margin: 0 auto;
+
+
+}
+.whiskeyImage {
+	width: 600px;
+	height: auto;
+	border: 2px solid #3B3230;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(20,20,20,1);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(20,20,20,1);
+	box-shadow: 10px 10px 5px 0px rgba(20, 20, 20,1);
+	
+}
+.whiskeyContent {
+	position: relative;
+	top: -810px;
+	left: 0;
+}
+.originalText {
+	color: #e7e7e7;
+	font-size: 18px;
+	margin: 0 0 10px 0;
+	padding: 12px;
+	// border: 1px solid white;
+	font-family: "Arial";
+	width: 600px;
+	height: auto;
+	// text-indent: 10px;
+
+}
+.whiskeyMapImage {
+	width: auto;
+	height: 450px;
+	border: 2px solid #3B3230;
+	-webkit-box-shadow: -9px -7px 5px 0px rgba(20,20,20,1);
+	-moz-box-shadow: -9px -7px 5px 0px rgba(20,20,20,1);
+	box-shadow: -9px -7px 5px 0px rgba(20,20,20,1);
+	// border: 2px solid red;
+	
+}
+.originalTextTitle {
+	font-size: 32px;
+	color: white;
+	font-family: "Special Elite";
+	width: 400px;
+	height: 50px;
+	// border: 1px solid yellow;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+.clearFloats {
+	clear: both;
+	height: 30px;
+}
+.textBoxSize {
+	width: 400px;
+	height: auto;
+	// background-border: 1px solid yellow;
+}
+.bigContentFlex {
+	display: flex;
+	flex-wrap: nowrap;
+	// border: 1px solid green;
+	justify-content: space-around;
+	margin-bottom: 30px;
+}
+.flex2 {
+	display: flex;
+	flex-direction: column;
+	// background-border: 1px solid yellow;
+}
+.underText {
+	width: 1000px;
+	margin: -25px auto 30px;
+}
+.whiskeyBanner {
+	width: 1200px;
+	height: auto;
+	-webkit-box-shadow: 1px 1px 15px 7px rgba(20,20,20,1);
+	-moz-box-shadow: 1px 1px 15px 7px rgba(20,20,20,1);
+	box-shadow: 1px 1px 15px 7px rgba(20,20,20,1);
+	border: 2px solid #3B3220 
+	
+}
+.hideMap {
+	height: 240px;
+	width: 1200px;
+	overflow: scroll;
+	margin-bottom: 30px;
+}
+.wideBox {
+	width: 900px;
+	height: auto;
+	margin: 0 auto;
+}
+.lastContent {
+	display: flex;
+	flex-direction: column;
+}
+.randomFactBox {
+	width: 200px;
+	height: 60px;
+	line-height: 60px;
+	background: #ECB580;
+	border-radius: 8px;
+	color: #6a5048;
+	font-family: "Swistblnk Monthoers";
+	font-size: 20px;
+	-webkit-box-shadow: 1px 1px 15px 7px rgba(20,20,20,1);
+	-moz-box-shadow: 1px 1px 15px 7px rgba(20,20,20,1);
+	box-shadow: 1px 1px 15px 7px rgba(20,20,20,1);
+	border: 2px solid #6a5048;
+	text-align: center;
+	align-self: center;
+	outline: none;
+}
+.randomFactBox:hover {
+	color: #6a5048;
+	font-size: 22px;
+	background: #b98250;
+}
+.randomFactBox:hover:before {
+	content: 'more ';
+}
+.changeDirection {
+	justify-content: flex-start;
+}
+.originalFactText {
+	color: #e7e7e7;
+	font-size: 14px;
+	margin: 5px 0 10px 0;
+	padding: 12px;
+	// border: 1px solid white;
+	font-family: "Arial";
+	width: 600px;
+	max-height: 77px;
+	overflow: auto;
+	align-self: center;
+	// text-indent: 10px;
+
+}

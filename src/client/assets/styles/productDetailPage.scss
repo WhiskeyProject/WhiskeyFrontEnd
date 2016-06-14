@@ -1,0 +1,116 @@
+	// body {
+	// 	color: white;
+	// }
+.detailImage img {
+	width: auto;
+	height: 420px	;
+}
+.detailImage {
+	border-radius: 8px;
+}
+// .detailImage {
+// 	background: white;
+// 	width: auto;
+// 	height: 420px;
+// 	text-align: center;
+// }
+.productFlex {
+	width: 1200px;
+	height: auto;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	// border: 1px solid yellow;
+	margin: 20px 0 20px 0;
+}
+.imageDetailBox {
+	width: 336px;
+	height: 500px;
+	// border: 1px solid red; 
+	display: flex;
+	flex-direction: column;
+	// justify-content: space-between;
+	align-items: center;
+	background: #111;
+
+
+}
+.titleDetailBox {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	// border: 1px solid blue;
+	width: 600px;
+	height: 400px;
+}
+.prodTitle, .prodRegion, .prodDescription, .prodTags {
+	width: 600px;
+	color: #e7e7e7;
+	font-family: Arial;
+	padding-left: 20px;
+	font-size: 18px;
+	// border: 1px solid green;
+}
+.prodTitle {
+	font-family: "Special Elite";
+	min-height: 60px;
+	line-height: 60px;
+	font-size: 32px;
+	padding: 0;
+}
+.prodRegion, .prodTags {
+	font-size: 18px;
+	
+}
+.prodRegion {
+	width: 200px;
+	
+}
+.prodDescription {
+	height: 180px;
+	overflow: auto;
+
+
+}
+.prodTags {
+	width: 500px;
+	height: auto;
+	
+}
+.suggestions, .leaveReview {
+	font-family: "Swistblnk Monthoers";
+	font-size: 22px;
+	margin: 15px 0 10px 30px;
+	color: #b2b2b2;
+}
+.leaveReview {
+	margin: 25px 0 10px 5px;
+
+}
+.priceColor {
+	color: #f9f9f9;
+	font-size: 12px;
+	margin-top: 3px;
+	text-shadow: 1px 1px #000;	
+}
+.prodDetailContainer {
+	position: relative;
+	top: -810px;
+	left: 0;
+}
+.avgPrice {
+	color: #e7e7e7;
+	font-size: 14px;
+}
+.cheatDiv {
+	height: 20px;
+}
+.priceSize {
+	font-size: 14px;
+}
+// .addComma:after {
+// 	content: ',';
+// }
+// .addComma:last-child {
+// 	content: "?";
+// }

@@ -1,0 +1,119 @@
+.reviewFormFlex {
+	width: 600px;
+	border: 3px solid #e7e7e7;
+	margin: 25px 0 15px 0;
+	padding: 15px 0 15px 15px;
+}
+.reviewForm {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	height: 200px;
+	// border: 1px solid red;
+}
+.reviewForm input[type=text] {
+	width: 350px;
+	height: 40px;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.reviewForm input[type=number] {
+	width: 40px;
+	height: 35px;
+	margin-bottom: 10px;
+}
+.reviewForm textarea {
+	width: 500px;
+	height: 120px;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.reviewForm button {
+	width: 80px;
+	height: 30px;
+	font-size: 12px;
+}
+
+.dv-star-rating-star{
+	color:#fff;
+}
+.dv-star-rating {
+	width:80px;
+	margin-bottom:10px;
+}
+.dv-star-rating-star:hover {
+	color: orange;
+}
+.dv-star-rating:hover {
+	color: orange;
+}
+// $react-rater-link: #e7e7e7 !default;   // color of star not rated
+// $react-rater-hover: yellow !default;  // color of star on hover
+// $react-rater-active: orange !default; // color of star rated
+
+// .react-rater {
+//     display: inline-block;
+//     line-height: normal;
+//     a {
+//         cursor: pointer;
+//         color: $react-rater-link;
+//         &.will-be-active {
+//             color: $react-rater-hover;
+//         }
+//         &.is-active {
+//             color: $react-rater-active;
+//         }
+//         &.is-disabled {
+//             color: $react-rater-link;
+//             cursor: not-allowed;
+//         }
+//     }
+//     &.is-disabled {
+//       a {
+//         cursor: default;
+//       }
+//     }
+// }
+
+// @import "bourbon";
+
+// .rsr-root {
+//   vertical-align: middle;
+//   display: inline-block; 
+// }
+
+// .rsr--editing {
+//   &:hover {
+//     cursor: pointer;
+//   }
+// }
+
+// .rsr {
+//   position: relative;
+//   vertical-align: middle;
+//   display: inline-block;
+//   color: #e3e3e3;
+//   overflow: hidden;
+// }
+
+// .rsr__stars {
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   color: #F5A71B;
+//   @include transition(all 0.01s);
+// }
+
+// .rsr__caption {
+//   font-size: 1.25em;
+//   vertical-align: middle;
+//   margin-right: 0.5em;
+// }
+
+// .rsr--disabled {
+//   .rsr-container:hover {
+//     cursor: not-allowed;
+//   }
+// }
