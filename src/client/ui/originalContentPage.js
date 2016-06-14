@@ -9,7 +9,7 @@ import ReviewForm from 'ui/reviewForm';
 import AddFavorite from 'ui/addFavorite';
 import LikeHeart from 'ui/likeHeart';
 import NoHeart from 'ui/noHeart';
-
+import HeaderComponent from 'ui/headerComponent';
 
 require("assets/styles/originalContent.scss")
 var image = require("assets/images/BuffaloBarrels.jpg");
@@ -41,29 +41,39 @@ export default React.createClass({
 		logout();
 		browserHistory.push('/landingPage3');
 	},
+
+	getAnotherFact: function(){
+		getRandomFact();
+		this.unsubscribe = store.subscribe(function(){
+			var currentStore = store.getState();
+			this.setState({
+				randomFact: currentStore.whiskeyReducer.randomFact,
+				randomFactText: currentStore.whiskeyReducer.randomFact[0].text
+
+			});
+		}.bind(this))
+	},
+
 	componentWillUnmount: function () {
 		this.unsubscribe();
 	},
 	render: function(){
 		return (
 			<div className="bgImage">
-				<header className="carryLogo">
-					<div className="headerFlex">
-					<div className="logoDiv">
-						<Link to="/landingPage3"><img src={logoImage} /></Link>
-					</div>
-					<div className="headerLinks">
-						<Link to="/likesPage2">New Search</Link>
-						<Link to="/userPage2">Profile</Link>
-						<a href="#" onClick={this.userLogout}>Logout</a>
-					</div>
-					</div>
-				</header>
+
+				<HeaderComponent 
+					page1={''} link1={''}
+					page2={'/likesPage2'} link2={'General Search'} 
+					page3={'/userPage2'} link3={'Profile'}	
+				/>
+	
 				<div className="container">
 				<div className="mainImage productDetailBg"><img src={logoImage} /></div>
 					<div className="whiskeyContent">
 						<div className="bigContentFlex changeDirection">
-							<div className="randomFactBox">random bits...</div>
+
+							<button className="randomFactBox" onClick={this.getAnotherFact}>random bits...</button>
+
 							<div className="originalFactText">{this.state.randomFactText}</div>
 							
 						</div>

@@ -41,6 +41,13 @@
 	width:80px;
 	margin-bottom:10px;
 }
+.dv-star-rating-star:hover {
+	color: orange;
+}
+.dv-star-rating:hover {
+	color: orange;
+}
+
 // $react-rater-link: #e7e7e7 !default;   // color of star not rated
 // $react-rater-hover: yellow !default;  // color of star on hover
 // $react-rater-active: orange !default; // color of star rated

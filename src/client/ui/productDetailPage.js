@@ -9,6 +9,7 @@ import ReviewForm from 'ui/reviewForm';
 import AddFavorite from 'ui/addFavorite';
 import LikeHeart from 'ui/likeHeart';
 import NoHeart from 'ui/noHeart';
+import HeaderComponent from 'ui/headerComponent';
 
 
 require("assets/styles/productDetailPage.scss")
@@ -75,19 +76,13 @@ export default React.createClass({
 	render: function(){
 		return (
 			<div className="bgImage">
-				<header className="carryLogo">
-					<div className="headerFlex">
-					<div className="logoDiv">
-						<Link to="/landingPage3"><img src={image} /></Link>
-					</div>
-					<div className="headerLinks">
-						<Link to="/originalContentPage">General Info</Link>
-						<Link to="/likesPage2">New Search</Link>
-						<Link to="/userPage2">Profile</Link>
-						<a href="#" onClick={this.userLogout}>Logout</a>
-					</div>
-					</div>
-				</header>
+
+				<HeaderComponent 
+					page1={'/likesPage2'} link1={'General Search'}
+					page2={'/originalContentPage'} link2={'General Info'} 
+					page3={'/userPage2'} link3={'Profile'}	
+				/>
+
 				<div className="container">
 				<div className="mainImage productDetailBg"><img src={image} /></div>
 					<div className="productFlex  prodDetailContainer">

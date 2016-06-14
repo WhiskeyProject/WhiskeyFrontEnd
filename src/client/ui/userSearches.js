@@ -14,6 +14,18 @@ export default React.createClass({
 			searchTitle: ""
 		}	
 	},
+
+	componentWillMount: function(){
+		this.unsubscribe = store.subscribe(function(){
+			var currentStore = store.getState();
+			this.setState({
+				tagSearch: currentStore.userReducer.tagSearch,
+				showSearchItem: currentStore.showReducer.showSearch,
+				usersearches: currentStore.userReducer.usersearches
+			});
+		}.bind(this))
+	},
+
 	handleClick: function(item, e){
 		e.stopPropagation();
 		console.log(item.search_string);
@@ -51,6 +63,10 @@ export default React.createClass({
 		deleteUserSearchBox(item.id);
 		this.props.updateSearches();
 	},
+	componentWillUnmount: function(){
+		this.unsubscribe();
+	},
+
 	render: function(){
 		return (
 			<div>
@@ -58,10 +74,11 @@ export default React.createClass({
 				{this.props.usersearches.map(function(item, i){
 					return (
 						<div>
-						<div className="searchBoxes" key={item.id} onClick={this.handleClick.bind(this, item)}>
-						{item.title} </div>
-						<div onClick={this.deleteSaveBox.bind(this, item)} className="deleteBox"><i className="fa fa-trash" aria-hidden="true"></i>
-						</div>
+
+							<div className="searchBoxes" key={i} onClick={this.handleClick.bind(this, item)}>{item.title} </div>
+							<div onClick={this.deleteSaveBox.bind(this, item)} className="deleteBox"><i className="fa fa-trash" aria-hidden="true"></i>
+							</div>
+
 						</div>
 						
 					)

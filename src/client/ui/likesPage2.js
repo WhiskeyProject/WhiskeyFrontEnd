@@ -1,12 +1,14 @@
 import React from 'react';
 import store from 'store';
-import { getTagSearch, getLikes, getGeneralSearch, logout } from 'api/data';
-import Item from 'ui/item';
+import { getTagSearch, getLikes, getGeneralSearch, logout, getAllResults } from 'api/data';
 import StarRating from 'ui/starRating';
 import SearchInput from 'ui/searchInput';
 import LikeBoxItem from 'ui/likeBoxItem';
-import SaveSearch from 'ui/saveSearch';
+import SaveSearch from 'ui/saveSearch'; 
+import HeaderComponent from 'ui/headerComponent';
 import { Link, browserHistory } from 'react-router';
+import TagFilterComponent from 'ui/tagFilterComponent';
+
 
 require('assets/styles/likesPage2.scss');
 var image = require("assets/images/darkerLogo.png");
@@ -22,53 +24,23 @@ export default React.createClass({
 			showMoreButton: false,
 			itemCount: 0,
 			tagSearch: [],
-			likes: [],
+			tagLikes: [],
+			priceLikes: [],
+			regionLikes: [],
 			fruit:['bitter','brine', 'buttery', 'clove', 'coffee', 'corn', 'creamy', 'ginger', 'maple', 'nutmeg', 'nutty', 'salty', 'sherry', 'spices', 'tea',],
 			structure: ['balanced', 'barley', 'complex', 'dry', 'earthy', 'floral', 'green', 'heavy', 'herbal', 'light', 'malty', 'mellow', 'mild', 'oak', 'old', 'peaty', 'peppery', 'rich', 'roses', 'smokey', 'smooth', 'sour', 'spicy', 'sweet', 'tobacco', 'wood'],
-			food: ['barley', 'buttery', 'butterscotch', 'candy', 'chocolate', 'cinnamon', 'cocoa', 'corn', 'honey', 'tea', 'toffee'],
+			region: ['island', 'rye', 'campbeltown', 'japan', 'bourbon', 'highland', 'american', 'irish', 'speyside', 'islay', 'other'],
 			items: ['apple', 'banana', 'cherry', 'citrus', 'fruity', 'lemon', 'orange', 'pear', 'raisins', 'zest'],
 			general: ['butterscotch', 'candy', 'chocolate', 'cinnamon', 'cocoa', 'honey', 'licorice', 'mint', 'sugar', 'toffee', 'vanilla'],
 			appearance: ['amber', 'brown', 'caramel', 'pale'],
 			price: ['$', '$$', '$$$'],
 			proof: ['A little', 'A lot', 'Way too much'],
 			likedwhiskey: [],
-			startBox: true
+			startBox: true,
+			likes: []
 		}	
 	},
-	// componentWillmount: function(){
-	// 	this.unsubscribe = store.subscribe(function(){
-	// 		var currentStore = store.getState();
-	// 		this.setState({
-	// 			showSearch: currentStore.showReducer.showSearch
-	// 		})
-	// 	})
-	// },
-	toggleStatus: function(item,index, e){
-		this.setState({
-			startBox: false
-		})
-		var val = item;
-		var allLikes = this.state.likes;
-		console.log('value:', this.refs.price.value);
-		if(allLikes.indexOf(item)===-1){
-			allLikes.push(item);
-		} else {
-			var arrIndex = allLikes.indexOf(item);
-			allLikes.splice(arrIndex,1)
-		}
-		console.log(allLikes);
-		getTagSearch(allLikes);
-
-		store.dispatch({
-			type: 'GET_LIKETAGS',
-			likes: allLikes
-		})
-		store.dispatch({
-			type: 'CHANGE_SHOWSEARCH',
-			showSearch: true
-		})
-		getLikes();	
-		
+	updateState: function(){
 		this.unsubscribe = store.subscribe(function(){
 			var currentStore = store.getState();
 			this.setState({
@@ -76,11 +48,89 @@ export default React.createClass({
 				tagSearch: currentStore.userReducer.tagSearch,
 				itemCount: currentStore.userReducer.itemCount,
 				showLikesSearch: currentStore.showReducer.showLikesSearch,
-				likes: currentStore.whiskeyReducer.likes,
 				showMoreButton: currentStore.showReducer.showMoreButton,
-				likedwhiskey: currentStore.userReducer.likedwhiskey
+				likedwhiskey: currentStore.userReducer.likedwhiskey,
+				likes: currentStore.whiskeyReducer.likes
 			})
 		}.bind(this))
+	} ,
+	componentWillMount: function(){
+		this.updateState();
+	},
+	pushTags: function(item, index, e, tags, cb){
+		this.startBoxStatus();
+		
+		if(tags.indexOf(item)===-1){
+			tags.push(item);
+		} else {
+			var arrIndex = tags.indexOf(item);
+			tags.splice(arrIndex,1)
+		}
+		
+		cb(tags);
+		
+		this.sendAllResults();
+	},
+	getTags: function(item,index, e){
+		this.startBoxStatus();
+		var tags = this.state.tagLikes;
+		this.pushTags(item, index, e, tags, function(resp){
+			this.setState({
+				tagLikes: resp
+			})
+		}.bind(this));		
+	},
+	getRegion: function(item, index, e){
+		this.startBoxStatus();
+		var tags = this.state.regionLikes;
+		this.pushTags(item, index, e, tags, function(resp){
+			this.setState({
+				regionLikes: resp
+			})
+		}.bind(this));	
+	},
+	
+	getPrice: function(item, index, e){
+		this.startBoxStatus();
+		var tags = this.state.priceLikes;
+		this.pushTags(item, index, e, tags, function(resp){
+			this.setState({
+				priceLikes: resp
+			})
+		}.bind(this));	
+	},
+	sendAllResults: function(){
+		var searchObj = {
+			tag: this.state.tagLikes,
+			price: this.state.priceLikes,
+			region: this.state.regionLikes
+		}
+		getAllResults(searchObj);
+		
+		var tagLength = this.state.tagLikes;
+		var priceLength = this.state.priceLikes;
+		var regionLength = this.state.regionLikes;
+		
+		if(tagLength.length > 0 || priceLength.length > 0 || regionLength.length > 0) {
+			store.dispatch({
+			type: 'CHANGE_SHOWSEARCH',
+			showSearch: true
+			})
+		} else {
+			store.dispatch({
+				type: 'CHANGE_SHOWSEARCH',
+				showSearch: false
+			})
+		}	
+
+		getLikes();	
+		
+		this.updateState();
+	},
+	startBoxStatus: function(){
+		this.setState({
+			startBox: false
+		})
 	},
 	componentWillUnmount: function(){
 		this.unsubscribe;
@@ -95,18 +145,8 @@ export default React.createClass({
 	},
 	searchFirst: function(str){
 		getGeneralSearch(str);
-		this.unsubscribe = store.subscribe(function(){
-			var currentStore = store.getState();
-			this.setState({
-				showSearch: currentStore.showReducer.showSearch,
-				tagSearch: currentStore.userReducer.tagSearch,
-				itemCount: currentStore.userReducer.itemCount,
-				showLikesSearch: currentStore.showReducer.showLikesSearch,
-				likes: currentStore.whiskeyReducer.likes,
-				showMoreButton: currentStore.showReducer.showMoreButton,
-				likedwhiskey: currentStore.userReducer.likedwhiskey
-			})
-		}.bind(this))
+
+		this.updateState();
 
 	},
 	userLogout: function(){
@@ -115,146 +155,56 @@ export default React.createClass({
 	},
 	render: function(){
 		return (
-			<div className="bgImage">
-				{this.state.startBox ? <div className="startBox"><i className="fa fa-arrow-left" aria-hidden="true"></i> Start Your Search Here</div> : ""}
-				<header className="carryLogo">
-					<div className="headerFlex">
-					<div className="logoDiv">
-						<Link to="/landingPage3"><img src={image} /></Link>
-					</div>
-					<div className="headerLinks">
-						<Link to="/originalContentPage">General Info</Link>
-						<Link to="/userPage2">Profile</Link>
-						<a href="#" onClick={this.userLogout}>Logout</a>
-					</div>
-					</div>
-				</header>
-			<div className="barrelBg">
-			<div className="container">
-				
-				<div className="navheader">
-					<div className="whatYouLike">Now, tell us what you like...</div>
-					<div className="centerSearchInput">
-						<SearchInput searchFirst={this.searchFirst}/>
-					</div>
-
-				</div>
-
-				<div className="pickStuff"></div>
-				<div className="bigFlex">
-				<div className="formContainer">
-				<form className="categories" id="categories" action="" method="post" onSubmit={this.handleSubmit}>
-				<div className="barrelBarFlex">
-				
-					
-					{/*}
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Nose</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.food.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>
-					</details>
-					</div>
-					*/}
-					
-
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Structure</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.structure.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>	
-					</details>
-					</div>
-
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Fruit</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.items.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>	
-					</details>
-					</div>
-
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Sweet</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.general.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>	
-					</details>
-					</div>
-
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Notes</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.fruit.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>
-					</details>
-					</div>
-					
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Appearance</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.appearance.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>
-					</details>
-					</div>
-
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Price</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.price.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox" ref="price" value={"?price=" + item} />{item}</div>
-							}.bind(this))}	
-						</div>
-					</details>
-					</div>
-
-					<div className="tasteCategoryBox">
-					<details open>
-						<summary className="barrelBar topRounded">Proof</summary>
-						<div className="barrelPopUp bottomRounded">
-							{this.state.proof.map(function(item,i){
-							return <div key={i}><input onClick={this.toggleStatus.bind(this, item, i)} type="checkbox"/>{item}</div>
-							}.bind(this))}	
-						</div>
-					</details>
-					</div>
-
-				</div>
-				
-
-
-				</form>
-				</div>
-					
-					<LikeBoxItem likedwhiskey={this.state.likedwhiskey} tagSearch={this.state.tagSearch} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} />
-					{/* {this.state.showSearch ? <LikeBoxItem likedwhiskey={this.state.likedwhiskey} tagSearch={this.state.tagSearch} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} /> : ""}  */}
-
-				
-				{/* {this.state.showLikesSearch ? <Item tagSearch={this.state.tagSearch} showLikesSearch={this.state.showLikesSearch} likes={this.state.likes}/> : ""} */}
+			<div className="bodyDiv">
 			
+			
+				<HeaderComponent 
+					page1={''} link1={''}
+					page2={'/originalContentPage'} link2={'General Info'} 
+					page3={'/userPage2'} link3={'Profile'}	
+				/>
+				
+				
+				<div className="container">
+				
+					<div className="navheader">
+						<div className="whatYouLike">Now, tell us what you like...</div>
+						<div className="newSaveBox">
+							{this.props.showSearch ? <SaveSearch likes={this.props.likes} /> : ""} 
+						</div>
+						<div className="centerSearchInput">
+							<SearchInput searchFirst={this.searchFirst} startBoxStatus={this.startBoxStatus}/>
+						</div>
+					</div>
+
 					
-				</div>	
-			</div>
-			</div>
+					<div className="bigFlex">
+						
+						<form action="" method="post" onSubmit={this.handleSubmit}>
+							<div className="barrelBarFlex">
+								<TagFilterComponent group={this.state.region} getResults={this.getRegion} category={"Region"}/>
+								<TagFilterComponent group={this.state.items} getResults={this.getTags} category={"Fruit"}/>
+								<TagFilterComponent group={this.state.general} getResults={this.getTags} category={"Sweet"}/>
+								<TagFilterComponent group={this.state.fruit} getResults={this.getTags} category={"Notes"}/>
+								<TagFilterComponent group={this.state.appearance} getResults={this.getTags} category={"Appearance"}/>
+								<TagFilterComponent group={this.state.price} getResults={this.getPrice} category={"Price"}/>
+							</div>
+						</form>
+					
+						<LikeBoxItem 
+							likedwhiskey={this.state.likedwhiskey} 
+							tagSearch={this.state.tagSearch} 
+							showMoreButton={this.state.showMoreButton} 
+							itemCount={this.state.itemCount} 
+							likes={this.state.likes}
+						/>
+
+						{this.state.startBox ? <div className="startBox"><i className="fa fa-arrow-left" aria-hidden="true"></i> Start Your Search Here</div> : ""}			
+						
+					</div>
+
+				</div>
+
 			</div>
 		)
 	}

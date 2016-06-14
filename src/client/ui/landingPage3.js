@@ -14,9 +14,8 @@ export default React.createClass({
 				<div className="bgBanner">
 					<div className="shade2">
 						<div className="titleWords"><img src={image} /></div>
-
-						<div className="landingPageTextBox">
 							<div className="textA">making the world of whiskey a little easier to explore.</div>
+							<div className="landingPageTextBox">
 							<div className="textB"></div>
 							<div className="textC">May we make a suggestion...</div>
 							<Link to="/likesPage2"><button className="enter">Shoot</button></Link>

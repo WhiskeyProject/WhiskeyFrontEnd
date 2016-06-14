@@ -1,4 +1,5 @@
-	import React from 'react';
+
+import React from 'react';
 import store from 'store';
 import { getLikes, getWhiskey, getSearches, logout } from 'api/data';
 import Suggestions from 'ui/suggestions';
@@ -6,6 +7,7 @@ import UserSearches from 'ui/userSearches';
 import SearchInput from 'ui/searchInput';
 import { Link, browserHistory } from 'react-router';
 import LikeBoxItem from 'ui/likeBoxItem';
+import HeaderComponent from 'ui/headerComponent';
 
 require("assets/styles/userPage2.scss");
 require('font-awesome-webpack');
@@ -17,7 +19,6 @@ export default React.createClass({
 			likedwhiskey: [],
 			whiskeyItem: {},
 			usersearches: [],
-			comparables: [],
 			show: false,
 			showHeart: true,
 			showLikesSearch: true,
@@ -32,7 +33,7 @@ export default React.createClass({
 	},
 	getDivTitle: function(title, str){
 		this.setState({
-			titleDiv: "Your " + title + " search...",
+			titleDiv: "Your '" + title + "' search...",
 			titleDescription: str
 		})
 	},
@@ -45,7 +46,6 @@ export default React.createClass({
 				likedwhiskey: currentStore.userReducer.likedwhiskey,
 				whiskeyItem: currentStore.whiskeyReducer.whiskeyItem,
 				usersearches: currentStore.userReducer.usersearches,
-				comparables: currentStore.whiskeyReducer.comparables,
 				show: currentStore.showReducer.show,
 				showLikesSearch: currentStore.showReducer.showLikesSearch,
 				containerInfo: currentStore.userReducer.containerInfo,
@@ -84,6 +84,11 @@ export default React.createClass({
 			})
 		}.bind(this))
 	},
+	startBoxStatus: function(){
+		this.setState({
+			startBox: false
+		})
+	},
 	componentWillUnmount: function(){
 		this.unsubscribe();
 	},
@@ -95,43 +100,37 @@ export default React.createClass({
 	render: function(){
 		return (
 			<div className="bgImage">
-				<header className="carryLogo">
-					<div className="headerFlex">
-					<div className="logoDiv">
-						<Link to="/landingPage3"><img src={image} /></Link>
-					</div>
-					<div className="headerLinks">
-						<Link to="/originalContentPage">General Info</Link>
-						<Link to="/likesPage2">New Search</Link>
-						<a href="#" onClick={this.userLogout}>Logout</a>
-					</div>
-					</div>
-				</header>
 				
+				<HeaderComponent
+					page1={''} link1={''} 
+					page2={'/originalContentPage'} link2={'General Info'} 
+					page3={'/likesPage2'} link3={'General Search'}
+				/>
+
 				
-				<div className="userPageContainer">
-				<div className="navheader">
-					<div className="whatYouLike">{this.state.titleDiv}</div>
-					<div className="centerSearchInput">
-						<SearchInput getDivTitle={this.getDivTitle} showLikeButton={this.showLikeButton} />
+				<div className="container">
+					<div className="navheader">
+						<div className="whatYouLike">{this.state.titleDiv}</div>
+						<div className="newSaveBox"></div>
+						<div className="centerSearchInput">
+							<SearchInput getDivTitle={this.getDivTitle} showLikeButton={this.showLikeButton} startBoxStatus={this.startBoxStatus} />
+						</div>
 					</div>
-				</div>
-				<div className="pickStuff"></div>
-				<div className="userPageBigBox">
-				<div className="userSearchSave">
-					<p>Saved Searches</p>
-					<div className="userSearchBox">
-					<UserSearches getDivTitle={this.getDivTitle} usersearches={this.state.usersearches} showLikeButton={this.showLikeButton} updateSearches={this.updateSearches} />
-					</div>
-					{this.state.showBackToLikes ? <a href="#"><div className="backToLikes" onClick={this.goBack} >Back to Likes</div></a> : ""}
-				</div>
-					
-					<LikeBoxItem tagSearch={this.state.containerInfo} likedwhiskey={this.state.likedwhiskey} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} /> 
+					<div className="pickStuff"></div>
+					<div className="userPageBigBox">
+						<div className="userSearchSave">
+							<p>Saved Searches</p>
+								<div className="userSearchBox">
+									<UserSearches getDivTitle={this.getDivTitle} usersearches={this.state.usersearches} showLikeButton={this.showLikeButton} updateSearches={this.updateSearches} />
+								</div>
+							{this.state.showBackToLikes ? <a href="#"><div className="backToLikes" onClick={this.goBack} >Back to Likes</div></a> : ""}
+						</div>
 						
-					<div>
+						<LikeBoxItem tagSearch={this.state.containerInfo} likedwhiskey={this.state.likedwhiskey} showMoreButton={this.state.showMoreButton} likes={this.state.likes} itemCount={this.state.itemCount} /> 
+						
 					</div>
 				</div>
-				</div>
+
 			</div>
 		)
 	}

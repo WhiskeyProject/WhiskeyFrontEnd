@@ -58,12 +58,101 @@ export function postNewReview(obj){
     });
 }
 
+var a = "";
+var b = "";
+var c = "";
+export function getAllResults(obj){
+  // console.log('Object being sent:', obj);
+  if(obj.tag.length > 0){
+    if(obj.region.length > 0 || obj.price.length > 0){
+      a = "tags="+ obj.tag;
+    } 
+    else if(obj.region.length === 0 && obj.price.length === 0){
+      a = "tags=" + obj.tag; 
+    }
+    else {
+      a = "&tags=" + obj.tag;
+    }
+  } 
+  else {
+      a = "";
+  }
+  
+  if(obj.region.length > 0){
+    if(obj.tag.length === 0 && obj.price.length === 0){
+      b = "region="+ obj.region;
+    } 
+    else {
+      b = "&region=" + obj.region; 
+    }
+  } 
+  else {
+      b = "";
+  }
 
+  if(obj.price.length > 0){
+    if(obj.tag.length === 0 && obj.region.length === 0){
+      c = "price="+ obj.price;
+    } 
+    else {
+      c = "&price=" + obj.price; 
+    }
+  } 
+  else {
+      c = "";
+  }
+
+
+  // console.log("In the getAllResults function: shoot/?" + a + b + c);
+    return api.get("shoot/?" + a + b + c).then(function(resp){
+
+      store.dispatch({
+        type: 'GET_LIKETAGS',
+        likes: a + b + c
+      })
+      // console.log('Likes:', a+b+c);
+      if(a === "" && b === "" && c === ""){
+        store.dispatch({
+          type: 'GET_TAGSEARCH',
+          tagSearch: [],
+          itemCount: 0,
+          containerInfo: []
+          }) 
+        
+        store.dispatch({
+          type: 'CHANGE_SHOWMOREBUTTON',
+          showMoreButton: false
+        })
+
+      }  else {
+          store.dispatch({
+            type: 'GET_TAGSEARCH',
+            tagSearch: resp.data.results,
+            itemCount: resp.data.count,
+            containerInfo: resp.data.results
+            })
+          
+            if(resp.data.count >= 12) { 
+              store.dispatch({
+                type: 'CHANGE_SHOWMOREBUTTON',
+                showMoreButton: true
+              })
+            } 
+            else {
+              store.dispatch({
+                type: 'CHANGE_SHOWMOREBUTTON',
+                showMoreButton: false
+              })
+            }
+        }
+    })
+}
 
 
 export function getTagSearch(str){
   console.log("shoot/?tags=" + str);
-    return api.get("shoot/?tags=" + str).then(function(resp){
+    return api.get("shoot/?" + str).then(function(resp){
+
       store.dispatch({
         type: 'GET_TAGSEARCH',
         tagSearch: resp.data.results,
@@ -81,15 +170,17 @@ export function getTagSearch(str){
             })
           }
 
-      console.log('After the call:', resp.data.results.length);
-             console.log("tagCount:", resp.data.count);
+      // console.log('After the call:', resp.data.results.length);
+             // console.log("tagCount:", resp.data.count);
+
 
     })
 }
 
 export function getMore(num, str){
   // console.log("shoot/?tags=" + str);
-    return api.get("shoot/?page=" + num + "&tags=" + str).then(function(resp){
+    return api.get("shoot/?page=" + num + "&" + str).then(function(resp){
+
       store.dispatch({
         type: 'GET_MORE',
         tagSearch: resp.data.results,
@@ -104,7 +195,9 @@ export function getGeneralSearch(str){
     return api.get("searchbox/?terms=" + str).then(function(resp){
       store.dispatch({
         type: 'GET_TAGSEARCH',
-        tagSearch: resp.data, 
+        tagSearch: resp.data,
+        // itemCount: resp.data.count,
+
         containerInfo: resp.data
       })
       if(resp.data.length >= 12) { 
