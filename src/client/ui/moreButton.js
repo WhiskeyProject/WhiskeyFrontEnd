@@ -9,6 +9,7 @@ require("assets/styles/likesPage2.scss");
 let i = 1
 
 export default React.createClass({
+
 	getInitialState: function(){
 		return {
 			likes: ""

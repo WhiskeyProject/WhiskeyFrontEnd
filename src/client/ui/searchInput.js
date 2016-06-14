@@ -32,7 +32,9 @@ export default React.createClass({
 	},
 	handleSubmit: function(e){
 		e.preventDefault();
+
 		this.props.startBoxStatus();
+
 		getGeneralSearch(this.state.searchTag);
 		this.props.searchFirst(this.state.searchTag);
 		this.props.getDivTitle(this.state.searchTag, "You searched for ");
@@ -45,13 +47,16 @@ export default React.createClass({
 			searchTag: ""
 		})
 		this.props.showLikeButton();
+
 	},
 	
+
 	render: function(){
 		return (
 			<div className="searchInputDiv">
 				<form id="searchField" onSubmit={this.handleSubmit}>
 					<i className="fa fa-search" onClick={this.handleSubmit}></i>
+
 					<input type="search" ref="searchTag" placeholder="Search" onChange={this.handleChange} name="searchTag" value={this.state.searchTag} />
 					<button id="searchFieldButton" type="submit">Search</button>
 				</form>

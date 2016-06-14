@@ -25,7 +25,6 @@ export default (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route component={App}>
-     {/* 	<Route path="/" component={LandingPage} /> */}
      	<Route path="/login" component={Login} />
      	<Route path="/signup" component={Signup} />
       <Route path='/likesPage2' component={LikesPage2} />

@@ -11,8 +11,6 @@ import LikeHeart from 'ui/likeHeart';
 import NoHeart from 'ui/noHeart';
 import HeaderComponent from 'ui/headerComponent';
 
-
-
 require("assets/styles/originalContent.scss")
 var image = require("assets/images/BuffaloBarrels.jpg");
 var logoImage = require("assets/images/darkerLogo.png");
@@ -43,6 +41,7 @@ export default React.createClass({
 		logout();
 		browserHistory.push('/landingPage3');
 	},
+
 	getAnotherFact: function(){
 		getRandomFact();
 		this.unsubscribe = store.subscribe(function(){
@@ -54,6 +53,7 @@ export default React.createClass({
 			});
 		}.bind(this))
 	},
+
 	componentWillUnmount: function () {
 		this.unsubscribe();
 	},
@@ -67,15 +67,13 @@ export default React.createClass({
 					page3={'/userPage2'} link3={'Profile'}	
 				/>
 	
-
-
-
-
 				<div className="container">
 				<div className="mainImage productDetailBg"><img src={logoImage} /></div>
 					<div className="whiskeyContent">
 						<div className="bigContentFlex changeDirection">
+
 							<button className="randomFactBox" onClick={this.getAnotherFact}>random bits...</button>
+
 							<div className="originalFactText">{this.state.randomFactText}</div>
 							
 						</div>

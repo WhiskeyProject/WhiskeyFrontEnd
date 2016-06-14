@@ -1,3 +1,4 @@
+
 import React from 'react';
 import store from 'store';
 import { getLikes, getWhiskey, getSearches, logout } from 'api/data';
@@ -7,7 +8,6 @@ import SearchInput from 'ui/searchInput';
 import { Link, browserHistory } from 'react-router';
 import LikeBoxItem from 'ui/likeBoxItem';
 import HeaderComponent from 'ui/headerComponent';
-
 
 require("assets/styles/userPage2.scss");
 require('font-awesome-webpack');

@@ -152,6 +152,7 @@ export function getAllResults(obj){
 export function getTagSearch(str){
   console.log("shoot/?tags=" + str);
     return api.get("shoot/?" + str).then(function(resp){
+
       store.dispatch({
         type: 'GET_TAGSEARCH',
         tagSearch: resp.data.results,
@@ -172,12 +173,14 @@ export function getTagSearch(str){
       // console.log('After the call:', resp.data.results.length);
              // console.log("tagCount:", resp.data.count);
 
+
     })
 }
 
 export function getMore(num, str){
   // console.log("shoot/?tags=" + str);
     return api.get("shoot/?page=" + num + "&" + str).then(function(resp){
+
       store.dispatch({
         type: 'GET_MORE',
         tagSearch: resp.data.results,
@@ -194,6 +197,7 @@ export function getGeneralSearch(str){
         type: 'GET_TAGSEARCH',
         tagSearch: resp.data,
         // itemCount: resp.data.count,
+
         containerInfo: resp.data
       })
       if(resp.data.length >= 12) { 

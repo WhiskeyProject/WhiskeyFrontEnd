@@ -52,8 +52,7 @@ export default React.createClass({
 				password: ""
 			});
 		}.bind(this));
-		localStorage.username = this.state.username;
-		localStorage.password = this.state.password;
+
 	},
 	render: function(){
 		return (

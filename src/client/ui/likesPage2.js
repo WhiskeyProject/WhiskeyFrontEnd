@@ -4,10 +4,11 @@ import { getTagSearch, getLikes, getGeneralSearch, logout, getAllResults } from 
 import StarRating from 'ui/starRating';
 import SearchInput from 'ui/searchInput';
 import LikeBoxItem from 'ui/likeBoxItem';
-import SaveSearch from 'ui/saveSearch';
+import SaveSearch from 'ui/saveSearch'; 
 import HeaderComponent from 'ui/headerComponent';
 import { Link, browserHistory } from 'react-router';
 import TagFilterComponent from 'ui/tagFilterComponent';
+
 
 require('assets/styles/likesPage2.scss');
 var image = require("assets/images/darkerLogo.png");
@@ -146,6 +147,7 @@ export default React.createClass({
 		getGeneralSearch(str);
 
 		this.updateState();
+
 	},
 	userLogout: function(){
 		logout();

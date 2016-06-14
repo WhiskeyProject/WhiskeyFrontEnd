@@ -26,7 +26,6 @@ export default React.createClass({
 			showMoreButton: false
 		})
 	},
-
 	componentWillMount: function(){
 		this.unsubscribe = store.subscribe(function(){
 			var currentStore = store.getState();
@@ -36,7 +35,6 @@ export default React.createClass({
 				showMoreButton: currentStore.showReducer.showMoreButton
 			})
 		}.bind(this));
-		console.log('When LikeBox Mounts, tagsearch from InputBox is:', this.props.tagSearch);
 	},
 
 	handleClick: function(item, e){
@@ -62,13 +60,7 @@ export default React.createClass({
 		x = this.state.likedwhiskey.map(function(data){
 			return data.id;
 		})
-		
-
-		// this.setState({
-		// 	iDs: iDs
-		// })
 	},
-
 	getStatus: function(item){
 		this.getIDs();
 		if(x.indexOf(item) === -1){
