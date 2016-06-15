@@ -112,10 +112,12 @@ export default React.createClass({
 		var regionLength = this.state.regionLikes;
 		
 		if(tagLength.length > 0 || priceLength.length > 0 || regionLength.length > 0) {
-			store.dispatch({
-			type: 'CHANGE_SHOWSEARCH',
-			showSearch: true
-			})
+			setTimeout(function(){
+				store.dispatch({
+					type: 'CHANGE_SHOWSEARCH',
+					showSearch: true
+				})
+			}, 1500)
 		} else {
 			store.dispatch({
 				type: 'CHANGE_SHOWSEARCH',
@@ -133,7 +135,7 @@ export default React.createClass({
 		})
 	},
 	componentWillUnmount: function(){
-		this.unsubscribe;
+		this.unsubscribe();
 		store.dispatch({
 			type: 'CHANGE_SHOWSEARCH',
 			showSearch: false
@@ -153,6 +155,7 @@ export default React.createClass({
 		logout();
 		browserHistory.push('/landingPage3');
 	},
+
 	render: function(){
 		return (
 			<div className="bodyDiv">
@@ -169,9 +172,7 @@ export default React.createClass({
 				
 					<div className="navheader">
 						<div className="whatYouLike">Now, tell us what you like...</div>
-						<div className="newSaveBox">
-							{this.props.showSearch ? <SaveSearch likes={this.props.likes} /> : ""} 
-						</div>
+						
 						<div className="centerSearchInput">
 							<SearchInput searchFirst={this.searchFirst} startBoxStatus={this.startBoxStatus}/>
 						</div>
@@ -197,6 +198,7 @@ export default React.createClass({
 							showMoreButton={this.state.showMoreButton} 
 							itemCount={this.state.itemCount} 
 							likes={this.state.likes}
+							showSearch={this.state.showSearch}
 						/>
 
 						{this.state.startBox ? <div className="startBox"><i className="fa fa-arrow-left" aria-hidden="true"></i> Start Your Search Here</div> : ""}			

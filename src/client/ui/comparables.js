@@ -59,6 +59,9 @@ export default React.createClass({
 		e.preventDefault();
 		getWhiskey(item.id);
 	},
+	componentWillUnmount: function(){
+		this.unsubscribe();
+	},
 	render: function(){
 		return (
 			<div className="bigCompFlex prodDetailContainer">

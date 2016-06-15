@@ -69,6 +69,9 @@ export default React.createClass({
 			return true;
 		}
 	},
+	componentWillUnmount: function(){
+		this.unsubscribe();
+	},
 	onScroll: function(){
 		window.onscroll = scrollFunction;
 		
@@ -117,10 +120,12 @@ export default React.createClass({
 
 							)
 						}.bind(this))}
-						{this.state.showSearch ? <SaveSearch likes={this.props.likes} /> : ""}
 					</div>
 				
 						{this.props.showMoreButton ? <MoreButton itemCount={this.props.itemCount} showSearch={this.state.showSearch} /> : ""}
+
+						{this.props.showSearch ? <SaveSearch likes={this.props.likes} /> : ""}
+
 						
 
 				</div>
