@@ -40,8 +40,7 @@ export default React.createClass({
 	handleClick: function(item, e){
 		e.preventDefault();
 		e.stopPropagation();
-		var clickId = item.id;
-		getWhiskey(clickId);
+		getWhiskey(item.id);
 			
 		store.dispatch({
 			type: 'CHANGE_SHOW',
@@ -72,23 +71,7 @@ export default React.createClass({
 	componentWillUnmount: function(){
 		this.unsubscribe();
 	},
-	onScroll: function(){
-		window.onscroll = scrollFunction;
-		
-
-
-			function scrollFunction(){
-				var scrollTest = document.getElementById('scrollTest');
-				var contentHeight = scrollTest.offsetHeight;
-				var yOffset = window.pageYOffset;
-				var y = yOffset + window.innerHeight;
-				
-				if(y >= contentHeight){
-					console.log("You're scrolling on in the LikeBox Component!!");
-				}		
-				
-		}
-	},
+	
 	render: function(){
 		return (
 			<div> 
@@ -102,9 +85,7 @@ export default React.createClass({
 								<div className="itemsLayout" key={i}>
 								{this.getStatus(item.id) ? <LikeHeart item={item} /> : <NoHeart item={item} />}
 									<Link to={"/productDetailPage/" + item.id}><div className="itemImageContainer">
-
 										<img className="itemImage" src={item.list_img_url} />
-										
 									</div></Link>
 									<div className="itemDescription">
 										<div className="titleDiv">{item.title}</div>

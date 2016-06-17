@@ -14,7 +14,7 @@ export default React.createClass({
 	// },
 	deleteLike: function(item, e){
 		e.preventDefault();
-		console.log('Item ID to be removed:', item.id);
+		// console.log('Item ID to be removed:', item.id);
 		changeFavorite({
 			whiskey_id: item.id,
 			action: "remove",

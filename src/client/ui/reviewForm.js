@@ -41,15 +41,12 @@ export default React.createClass({
 			text: "Thank You for Rating This.",
 			rating: 0
 		});
-		// window.location=window.location;
 	},
 
 	onStarClick(rating, prevRating, name) {
         this.setState({rating: rating});
     },
-    componentWillUnmount: function(){
-		this.unsubscribe();
-	},
+ 
 	render: function(){
 		return (
 			<div className="reviewFormFlex prodDetailContainer">

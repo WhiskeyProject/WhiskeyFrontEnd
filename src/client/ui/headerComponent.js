@@ -1,12 +1,17 @@
 import React from 'react';
 import store from 'store';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
+import { logout } from 'api/data';
 
 require("assets/styles/headerComponent.scss");
 var image = require("assets/images/darkerLogo.png");
 
 export default React.createClass({
-	
+	userLogout: function(){
+		logout();
+		browserHistory.push('/landingPage3');
+	},
+
 	render: function(){
 		return (
 			<div>

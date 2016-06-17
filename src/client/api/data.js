@@ -16,9 +16,9 @@ export function getUsers() {
   return api.get('users/users/');
 }
 
-export function addNewUser(username, password, cb){
-  return api.post('users/', {username:username, password:password}).then(function(){
-    api.login(username, password).then(function(){
+export function addNewUser(user, pass, cb){
+  return api.post('users/', {username:user, password:pass}).then(function(){
+    api.login(user, pass).then(function(){
        cb();
     }).catch(function(err){
       console.log(err);
@@ -34,7 +34,7 @@ export function getRandomFact(){
       type: 'GET_RANDOMFACT',
       randomFact: resp.data.results
     })
-    console.log('Random Fact', resp.data.results);
+    // console.log('Random Fact', resp.data.results);
   })
 }
 
@@ -52,7 +52,7 @@ export function getWhiskey(id){
     
 }
 export function postNewReview(obj){
-  console.log('******ID To Post', obj.whiskey);
+  // console.log('******ID To Post', obj.whiskey);
     return api.post('review/', obj).then(function(resp){
       getWhiskey(obj.whiskey)
     });
@@ -150,7 +150,7 @@ export function getAllResults(obj){
 
 
 export function getTagSearch(str){
-  console.log("shoot/?tags=" + str);
+  // console.log("shoot/?tags=" + str);
     return api.get("shoot/?" + str).then(function(resp){
 
       store.dispatch({
@@ -186,7 +186,7 @@ export function getMore(num, str){
         tagSearch: resp.data.results,
         containerInfo: resp.data.results
       })
-      console.log('After the more call:', resp.data.results);
+      // console.log('After the more call:', resp.data.results);
     })
 }
 
@@ -210,7 +210,7 @@ export function getGeneralSearch(str){
               showMoreButton: false
             })
           }
-      console.log("tagSearch:", resp.data);
+      // console.log("tagSearch:", resp.data);
     })
 }
 
@@ -234,7 +234,7 @@ export function getMyLikes() {
       type: 'GET_LIKES',
       likedwhiskey: resp.data.results
     })
-    console.log('My Likes:', resp.data.results)
+    // console.log('My Likes:', resp.data.results)
   })
 };
 
@@ -245,7 +245,7 @@ export function getLikes() {
       likedwhiskey: resp.data.results,
       containerInfo: resp.data.results
     })
-    console.log('Likes:', resp.data.results.length)
+    // console.log('Likes:', resp.data.results.length)
   })
 };
 export function getSearches() {
@@ -254,7 +254,7 @@ export function getSearches() {
       type: 'GET_SEARCHES',
       usersearches: resp.data.results
     })
-    console.log('Searches:', resp.data)
+    // console.log('Searches:', resp.data)
   })
 };
 

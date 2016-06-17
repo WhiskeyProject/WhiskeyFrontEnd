@@ -41,12 +41,12 @@ export default React.createClass({
 		this.props.close();
 	},
 	handleSubmit: function(e){
+		console.log(this.state.username, this.state.password, this.state.passwordMatch);
 		e.preventDefault();
-		browserHistory.push('/userPage2');
+		// browserHistory.push('/userPage2');
 		if(this.state.password === this.state.passwordMatch) {
 			addNewUser(this.state.username, this.state.password, function(){
 				browserHistory.push('/userPage2');
-				console.log('It gets past browserHistory');
 			}.bind(this)).catch(function(err){
 		}.bind(this));
 		} else {

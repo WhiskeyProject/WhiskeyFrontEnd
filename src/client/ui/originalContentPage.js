@@ -1,6 +1,6 @@
 import React from 'react';
 import store from 'store';
-import { getWhiskey, getLikes, logout, getRandomFact } from 'api/data';
+import { getWhiskey, getLikes, getRandomFact } from 'api/data';
 import StarRating from 'ui/starRating';
 import { Link, browserHistory } from 'react-router';
 import Comparables from 'ui/comparables';
@@ -37,11 +37,7 @@ export default React.createClass({
 			});
 		}.bind(this))
 	},
-	userLogout: function(){
-		logout();
-		browserHistory.push('/landingPage3');
-	},
-
+	
 	getAnotherFact: function(){
 		getRandomFact();
 		this.unsubscribe = store.subscribe(function(){
@@ -54,7 +50,7 @@ export default React.createClass({
 		}.bind(this))
 	},
 
-	componentWillUnmount: function () {
+	componentWillUnmount: function(){
 		this.unsubscribe();
 	},
 	render: function(){

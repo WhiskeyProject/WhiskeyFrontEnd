@@ -41,11 +41,6 @@ export default React.createClass({
 		x = this.state.likedwhiskey.map(function(data){
 			return data.id;
 		})
-		
-
-		// this.setState({
-		// 	iDs: iDs
-		// })
 	},
 	getStatus: function(item){
 		this.getIDs();
@@ -74,7 +69,7 @@ export default React.createClass({
 							<Link to={"/productDetailPage/" + item.id}><div className="itemImageContainer">
 
 								<img className="itemImage" src={item.list_img_url} />
-								{console.log('Item', item.list_img_url)}
+								
 							</div></Link>
 							<div className="itemDescription">
 								<div className="titleDiv">{item.title}</div>

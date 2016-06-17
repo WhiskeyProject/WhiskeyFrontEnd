@@ -15,12 +15,12 @@ export default React.createClass({
 		})	
 	},
 	componentWillMount: function(){
-		// this.unsubscribe = store.subscribe(function(){
-		// 	var currentStore = store.getState();
-		// 	this.setState({
-		// 		likes: currentStore.whiskeyReducer.likes
-		// 	})
-		// }.bind(this));
+		this.unsubscribe = store.subscribe(function(){
+			var currentStore = store.getState();
+			this.setState({
+				likes: currentStore.whiskeyReducer.likes
+			})
+		}.bind(this));
 
 	},
 	handleChange: function(e){
@@ -39,7 +39,7 @@ export default React.createClass({
 			search_string: this.props.likes 
 		}
 		// console.log(this.props.likeParams);
-		console.log('Saved Search_String:', searchObj);
+		// console.log('Saved Search_String:', searchObj);
 
 		postSavedSearch(searchObj);
 		

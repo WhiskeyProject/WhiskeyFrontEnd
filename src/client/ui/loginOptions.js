@@ -27,7 +27,7 @@ export default React.createClass({
 	},
 	handleClick: function(e){
 		var val = e.target.id;
-		console.log(val);
+		// console.log(val);
 		if(val === "login") {
 			this.setState({
 				currentUser: true,
@@ -41,7 +41,7 @@ export default React.createClass({
 				signup: true
 			})	
 		}
-		console.log(this.state.currentUser);
+		// console.log(this.state.currentUser);
 	},
 	render: function(){
 		return (

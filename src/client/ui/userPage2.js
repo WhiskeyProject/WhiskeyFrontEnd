@@ -37,7 +37,7 @@ export default React.createClass({
 			titleDescription: str
 		})
 	},
-	componentWillMount: function(){
+	componentDidMount: function(){
 		getLikes();
 		getSearches();
 		this.unsubscribe = store.subscribe(function(){

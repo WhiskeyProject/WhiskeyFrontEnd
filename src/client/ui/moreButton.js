@@ -15,7 +15,7 @@ export default React.createClass({
 			likes: ""
 		}
 	},
-	componentWillMount: function(){
+	componentDidMount: function(){
 		this.unsubscribe = store.subscribe(function(){
 			var currentStore = store.getState();
 			this.setState({

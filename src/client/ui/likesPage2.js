@@ -1,6 +1,6 @@
 import React from 'react';
 import store from 'store';
-import { getTagSearch, getLikes, getGeneralSearch, logout, getAllResults } from 'api/data';
+import { getTagSearch, getLikes, getGeneralSearch, getAllResults } from 'api/data';
 import StarRating from 'ui/starRating';
 import SearchInput from 'ui/searchInput';
 import LikeBoxItem from 'ui/likeBoxItem';
@@ -151,11 +151,7 @@ export default React.createClass({
 		this.updateState();
 
 	},
-	userLogout: function(){
-		logout();
-		browserHistory.push('/landingPage3');
-	},
-
+	
 	render: function(){
 		return (
 			<div className="bodyDiv">
@@ -172,7 +168,6 @@ export default React.createClass({
 				
 					<div className="navheader">
 						<div className="whatYouLike">Now, tell us what you like...</div>
-						
 						<div className="centerSearchInput">
 							<SearchInput searchFirst={this.searchFirst} startBoxStatus={this.startBoxStatus}/>
 						</div>

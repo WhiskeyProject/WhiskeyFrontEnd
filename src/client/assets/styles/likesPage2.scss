@@ -33,6 +33,7 @@ $brownTheme: #5C504D;
 	width: 380px !important;
 	// border: 5px solid blue;
 	align-self: center;
+	padding-left: 30px;
 }
 
 .bigFlex {
@@ -44,22 +45,6 @@ $brownTheme: #5C504D;
 	height: 100%;
 	justify-content: space-between;
 }
-// .formContainer {
-// 	width: 280px;
-// 	height: auto;
-// 	border: 2px solid red;
-// }
-// .barrelBarFlex {
-// 	display: flex;
-// 	width: auto;
-// 	flex-direction: column;
-// 	justify-content: space-between;
-// 	box-sizing: border-box;
-// 	border: 5px solid blue;
-// 	// overflow: hidden;
-	
-// }
-
 .barrelBar{
 	// border: 1px solid black;
 	font-size: 16px;
@@ -100,8 +85,6 @@ $brownTheme: #5C504D;
 	background: $tagBody;
 	color: #919496;
 	// border: 2px solid #6a5048;
-	// border-box: box-sizing;
-
 }
 .bigFlex form {
 	width: 140px;
@@ -141,7 +124,6 @@ summary {
 	text-align: center;
 }
 
-
 .searchHeader {
 	width: 280px;
 	// border: 1px solid blue;
@@ -153,10 +135,6 @@ summary {
 	// background: #9A7C5A;
 }
 
-
-.categories {
-	// margin-left: 20px;
-}
 .pickStuff {
 	color: white;
 	width: 300px;
@@ -172,7 +150,6 @@ summary {
 	height: 200px;
 	line-height: 200px;
 	border: 2px solid white;
-
 	font-size: 42px;
 	text-align: center;
 	color: white;
